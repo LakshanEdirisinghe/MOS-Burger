@@ -1,0 +1,6 @@
+    // fetch("inventory.json")
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         localStorage.setItem("inventory", JSON.stringify(data));
+    //         console.log("Inventory data loaded into LocalStorage!");
+    //     });
