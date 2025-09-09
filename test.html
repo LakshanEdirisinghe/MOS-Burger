@@ -1,42 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Toggle Example</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-    <head>
-        <title>Test Page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
+    /* Toggle Button */
+    #toggleBtn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      padding: 10px 15px;
+      background: #3498db;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-    <body>
-        <div class="container mt-5">
-            <h1>Inventory Management</h1>
-            <p></p>
-            <input id="itemCode" type="text" placeholder="Enter item code">
-            <input id="itemName" type="text" placeholder="Enter item name">
-            <input id="Price" type="number" placeholder="Enter price">
-            <input id="Discount" type="number" placeholder="Enter discount">
+    /* Sidebar default */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #2c3e50;
+      color: white;
+      position: fixed;
+      left: 0;
+      top: 0;
+      transition: 0.3s ease;
+      padding: 20px;
+    }
 
-            <button id="btn" type="submit">Add Item</button>
-            <p></p>
-            <table id="inventoryTable" class="table table-hover ">
-            </table>
+    /* Hidden state */
+    .sidebar.hidden {
+      left: -250px; /* slide out of view */
+    }
 
-            <script>
-            // fetch("inventory.json")
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         localStorage.setItem("inventory", JSON.stringify(data));
-            //         console.log("Inventory data loaded into LocalStorage!");
-            //     });
+    /* Main content */
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      transition: 0.3s ease;
+    }
 
+    /* Expand main content when sidebar hidden */
+    .main-content.expanded {
+      margin-left: 0;
+    }
 
-        </script>
-            <script src="/temp.js"></script>
-        </div>
-    </body>
+    /* Sidebar links */
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Toggle Button -->
+  <button id="toggleBtn">☰ Menu</button>
 
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <h3>Sidebar Menu</h3>
+    <ul>
+      <li>Dashboard</li>
+      <li>Orders</li>
+      <li>Inventory</li>
+      <li>Reports</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" class="main-content">
+    <h2>Welcome to Burger POS</h2>
+    <p>Main area where billing or order details appear.</p>
+    <p>Click the ☰ button to hide or show the sidebar.</p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const toggleBtn = document.getElementById("toggleBtn");
+    const sidebar = document.getElementById("sidebar");
+    const mainContent = document.getElementById("mainContent");
+
+    toggleBtn.addEventListener("click", function () {
+      sidebar.classList.toggle("hidden");      // hide/show sidebar
+    });
+  </script>
+</body>
 </html>

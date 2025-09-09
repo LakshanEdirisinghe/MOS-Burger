@@ -91,6 +91,7 @@ body {
     width: 24px;
     text-align: center;
 }
+
 #sidebar.hidden {
     left: calc(-1 * var(--sidebar-width));
 }
@@ -101,7 +102,7 @@ body {
     margin-left: var(--sidebar-width);
     transition: all var(--transition-speed) ease;
     min-height: 100vh;
-    padding-top: var(--topbar-height);
+    /* padding-top: var(--topbar-height); */
 }
 
 #main-content.expanded {
@@ -156,20 +157,28 @@ body {
 /* Mobile behavior */
 @media (max-width: 992px) {
     #sidebar {
-        left: calc(-1 * var(--sidebar-width)); /* hidden by default */
+        left: calc(-1 * var(--sidebar-width));
+        /* hidden by default */
     }
 
     #sidebar.show {
-        left: 0; /* slide in when "show" class is added */
+        left: 0;
+        /* slide in when "show" class is added */
     }
 
     #main-content {
         margin-left: 0;
+        padding-top: var(--topbar-height);
     }
 
     #topbar {
         left: 0;
     }
+
+    .sidebar-item {
+        font-size: 1rem;
+    }
+
 }
 
 
@@ -179,7 +188,7 @@ body {
 
 .card {
     border: none;
-    border-radius: 10px;
+    border-radius: 1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
