@@ -10,7 +10,7 @@ function renderInventory() {
     // Add table header row
     table.innerHTML += `
     <thead>
-        <tr>
+        <tr class="position-sticky top-0 bg-light">
           <th scope="col">Item Code</th>
           <th scope="col">Item Name</th>
           <th scope="col">Price</th>
