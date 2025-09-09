@@ -1,76 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Test Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
+    <head>
+        <title>Test Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <h1>Inventory Management</h1>
+            <p></p>
+            <input id="itemCode" type="text" placeholder="Enter item code">
+            <input id="itemName" type="text" placeholder="Enter item name">
+            <input id="Price" type="number" placeholder="Enter price">
+            <input id="Discount" type="number" placeholder="Enter discount">
+
+            <button id="btn" type="submit">Add Item</button>
+            <p></p>
+            <table id="inventoryTable" class="table table-hover ">
+            </table>
+
+            <script>
+            // fetch("inventory.json")
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         localStorage.setItem("inventory", JSON.stringify(data));
+            //         console.log("Inventory data loaded into LocalStorage!");
+            //     });
 
 
-<button id="btn" type="submit">Submit</button>
-<p></p>
-
-<table id="inventoryTable" class="table table-hover ">
-</table>
-
-
-</body>
-<script>
-    // fetch("inventory.json")
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         localStorage.setItem("inventory", JSON.stringify(data));
-    //         console.log("Inventory data loaded into LocalStorage!");
-    //     });
-
-    const inventoryItem = JSON.parse(localStorage.getItem("inventory"))
-    const table = document.getElementById("inventoryTable");
-
-
-
-document.getElementById("btn").addEventListener("click", function () {
-    let table = document.getElementById("inventoryTable");
-
-    // Clear previous rows
-    table.innerHTML = "";
-
-    // Add table header row
-    table.innerHTML += `
-    <thead>
-        <tr >
-          <th scope="col">Item Code</th>
-          <th scope="col">Item Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Discount</th>
-        </tr>
-        </thead>
-    `;
-
-    // Add rows from LocalStorage
-    for (let index = 0; index < inventoryItem.length; index++) {
-        let row = `
-        <tbody>
-            <tr>
-                <td>${inventoryItem[index].itemCode}</td>
-                <td>${inventoryItem[index].itemName}</td>
-                <td>${inventoryItem[index].price+" LKR"}</td>
-                <td>${inventoryItem[index].discount}</td>
-                
-            </tr>
-            </tbody>
-        `;
-        table.innerHTML += row;
-    }
-});
-
-
-
-
-
-
-</script>
+        </script>
+            <script src="/temp.js"></script>
+        </div>
+    </body>
 
 </html>
