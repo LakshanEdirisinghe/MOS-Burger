@@ -86,76 +86,67 @@
             <h1>customers</h1>
         </div>
         <div id="inventory" class="page active ms-3 me-3" style="display: none;">
-            <div class="row">
-                <div class=" col-12 col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            Quick Stats
-                        </div>
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <h4>24</h4>
-                                    <small>New Orders</small>
-                                </div>
-                                <div class="col-4">
-                                    <h4>12</h4>
-                                    <small>Customers</small>
-                                </div>
-                                <div class="col-4">
-                                    <h4>$1,240</h4>
-                                    <small>Revenue</small>
-                                </div>
-                            </div>
+
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-center">
+
+                        <div class="col-10 d-flex gap-3">
+                            <input type="search" class="form-control border-3 fs-3 text-center"
+                                placeholder="Search Items By Name Or ID"
+                                style="height: 51px; border-color: var(--light-team-brown) ;">
+
+                            <button type="button" class="btn border-0 btn-primary btn-lg"
+                                style="height: 51px; width: 100px; background-color:var(--light-team-brown);"><i
+                                    class="fa-sharp fa-solid fa-magnifying-glass fa-xl" style="color: #000000;"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-4 ">
-                    <div class="card">
-                        <div class="card-header">
-                            Recent Activity
+                    <div class="row mt-5 align-items-center">
+                        <div class="col-3">
+                            <button type="button" class="btn border-0 text-light fw-bold btn-lg d-lg-none d-block" style="background-color:var(--dark-team-brown);">Add New<i class="fa-solid fa-circle-plus fa-ms m-2"></i></button>
+                            <button type="button" class="btn border-0 text-light fw-bold btn-lg d-none d-lg-block" style="background-color:var(--dark-team-brown);">
+                                <div class="row align-items-center">
+                                    <div class="col-8">Add New <br> Items </div>
+                                    <div class="col-4"><i class="fa-solid fa-circle-plus fa-2xl"></i></div>
+                                </div>
+                            </button>
                         </div>
-                        <div class="card-body">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">New order
-                                    #1234 received</li>
-                                <li class="list-group-item">Customer
-                                    John Doe registered</li>
-                                <li class="list-group-item">Inventory
-                                    low on Product X</li>
-                            </ul>
+                        <div class="col-6 text-center">
+                            <h1 class="card-title text-uppercase">Items List</h1>
                         </div>
                     </div>
+
+
                 </div>
-                <div class=" col-12 col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            Quick Stats
-                        </div>
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <h4>24</h4>
-                                    <small>New Orders</small>
-                                </div>
-                                <div class="col-4">
-                                    <h4>12</h4>
-                                    <small>Customers</small>
-                                </div>
-                                <div class="col-4">
-                                    <h4>$1,240</h4>
-                                    <small>Revenue</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="card-body"></div>
+
             </div>
 
-            <div id="reports" class="page" style="display: none;">
-                <h1>Reports</h1>
-            </div>
+            <!-- <div class="row justify-content-center">
+
+                <div class="col-10 d-flex gap-3">
+                    <input type="search" class="form-control border-3 fs-3 text-center"
+                        placeholder="Search Items By Name Or ID"
+                        style="height: 51px; border-color: var(--light-team-brown) ;">
+
+                    <button type="button" class="btn border-0 btn-primary btn-lg"
+                        style="height: 51px; width: 100px; background-color:var(--light-team-brown);"><i
+                            class="fa-sharp fa-solid fa-magnifying-glass fa-xl" style="color: #000000;"></i>
+                    </button>
+                </div>
+            </div> -->
+
+
+
+
         </div>
+
+        <div id="reports" class="page" style="display: none;">
+            <h1>Reports</h1>
+        </div>
+    </div>
     </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
