@@ -150,8 +150,8 @@
                     <div class="d-lg-none d-block ">
                         <h2 class="text-uppercase mb-3">Items List</h2>
                         <button class="btn btn-primary btn border-0 text-light fs-4 fw-bold" type="button"
-                            style="background-color:var(--dark-team-brown);"data-bs-toggle="modal"
-                                    data-bs-target="#inventoryModal">Add New<i
+                            style="background-color:var(--dark-team-brown);" data-bs-toggle="modal"
+                            data-bs-target="#inventoryModal">Add New<i
                                 class="fa-solid fa-circle-plus fa-lg ps-2"></i></button>
 
                     </div>
@@ -181,7 +181,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="itemName" class="form-label">Item Name</label>
-                                    <input type="text" class="form-control" id="itemName" placeholder="Bacon Burger" required>
+                                    <input type="text" class="form-control" id="itemName" placeholder="Bacon Burger"
+                                        required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="category" class="form-label">Category</label>
@@ -189,7 +190,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="supplier" class="form-label">Supplier</label>
-                                    <input type="text" class="form-control" id="supplier" placeholder="MOS Kitchen" required>
+                                    <input type="text" class="form-control" id="supplier" placeholder="MOS Kitchen"
+                                        required>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="qty" class="form-label">Quantity</label>
@@ -197,7 +199,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="reorderPoint" class="form-label">Reorder Point</label>
-                                    <input type="number" class="form-control" id="reorderPoint" placeholder="6" required>
+                                    <input type="number" class="form-control" id="reorderPoint" placeholder="6"
+                                        required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="price" class="form-label">Unit Price</label>
@@ -205,15 +208,17 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="discount" class="form-label">Discount (%)</label>
-                                    <input type="number" step="0.01" class="form-control" id="discount"
-                                        placeholder="15" required>
+                                    <input type="number" step="0.01" class="form-control" id="discount" placeholder="15"
+                                        required>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Total (Auto)</label>
                                     <input type="text" class="form-control" id="totalAmount" readonly>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" id="btnSubmit" style="background-color:var(--dark-team-brown);" class="btn border-0 btn-primary">Add Item</button>
+                                    <button type="submit" id="btnSubmit"
+                                        style="background-color:var(--dark-team-brown);"
+                                        class="btn border-0 btn-primary">Add Item</button>
                                 </div>
                             </form>
                         </div>
@@ -226,9 +231,9 @@
         </div>
 
 
+        <!-- id="inventoryTable" -->
 
-
-        <div class="table-responsive">
+        <!-- <div class="table-responsive">
             <table id="inventoryTable" class="table table-hover table-bordered align-middle">
                 <thead class="table-dark">
                     <tr>
@@ -253,16 +258,51 @@
                 </tbody>
 
 
+            </table> -->
+
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+            <table id="inventoryTable" class="table table-hover table-bordered align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Item Code</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Suppler</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Reorder Point</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col" class="text-start">Unit Price (LKR)</th>
+                        <th scope="col" class="text-start">Total Price (LKR)</th>
+                        <th scope="col" class="text-start">On Hand Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="11" class="fw-bold display-3 text-center text-light">No Data !</td>
+                    </tr>
+
+                </tbody>
+
             </table>
+        </div>
+    </div>
 
-
-
-
-
-
-
+            </div>
 
         </div>
+
+
+
+
+
+
+
+
+    </div>
 
 
     </div>
