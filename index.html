@@ -168,9 +168,9 @@
             </div>
 
 
-<div class="row">
+
             <div class="table-responsive">
-                <table class="table table-hover table-bordered align-middle">
+                <table id="inventoryTable" class="table table-hover table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">Item Code</th>
@@ -186,140 +186,26 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tableBody">
                         <tr>
-                            <td><span class="text-center">B1001</span></td>
-                            <td>Classic Burger (Large)</td>
-                            <td>Burgers</td>
-                            <td>FreshFoods Ltd</td>
-                            <td class="text-end">50</td>
-                            <td class="text-end">20</td>
-                            <td class="text-end">0%</td>
-                            <td class="text-end">750</td>
-                            <td class="text-end">37,500</td>
-                            <td class="text-center"><span class="badge text-bg-success">In Stock</span></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn  btn-sm dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-gear fa-lg"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Update</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-
-
-                            </td>
+                            <td colspan="11" class="fw-bold display-3 text-center text-light">No Data !</td>
                         </tr>
-
-                        <tr>
-                            <td>B1002</td>
-                            <td>Classic Burger (Regular)</td>
-                            <td>Burgers</td>
-                            <td>FreshFoods Ltd</td>
-                            <td class="text-end">30</td>
-                            <td class="text-end">15</td>
-                            <td class="text-end">0%</td>
-                            <td class="text-end">1500</td>
-                            <td class="text-end">45,000</td>
-                            <td class="text-center"><span class="badge text-bg-danger">Low Stock</span></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn  btn-sm dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-gear fa-lg"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Update</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-
-                            </td>
-                        </tr>
-
 
                     </tbody>
 
 
                 </table>
+
+
+
+
+
+
+
+
             </div>
-</div>
 
-            <!-- <table class="table table-hover table-bordered align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">Item Code</th>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Supplier</th>
-                            <th scope="col" class="text-end">Qty</th>
-                            <th scope="col" class="text-end">Reorder Point</th>
-                            <th scope="col" class="text-center">Discount</th>
-                            <th scope="col" class="text-end">Unit Price (Rs.)</th>
-                            <th scope="col" class="text-end">Total Price (Rs.)</th>
-                            <th scope="col" class="text-center">On Hand Status</th>
-                            <th scope="col" class="text-center">Item Status</th>
-                            <th scope="col" class="text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>B1001</td>
-                            <td>Classic Burger (Large)</td>
-                            <td>Burgers</td>
-                            <td>FreshFoods Ltd</td>
-                            <td class="text-end">50</td>
-                            <td class="text-end">20</td>
-                            <td class="text-center">0%</td>
-                            <td class="text-end">750</td>
-                            <td class="text-end">37,500</td>
-                            <td class="text-center text-success">In Stock</td>
-                            <td class="text-center">Active</td>
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-warning me-1">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>B1002</td>
-                            <td>Classic Burger (Regular)</td>
-                            <td>Burgers</td>
-                            <td>FreshFoods Ltd</td>
-                            <td class="text-end">30</td>
-                            <td class="text-end">15</td>
-                            <td class="text-end">0%</td>
-                            <td class="text-end">1500</td>
-                            <td class="text-end">45,000</td>
-                            <td class="text-center text-success">In Stock</td>
-                            <td class="text-center">Active</td>
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-warning me-1">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> -->
-
-
-
-
-
-
-        </div>
-
-        <!-- <div class="row justify-content-center">
+            <!-- <div class="row justify-content-center">
 
                 <div class="col-10 d-flex gap-3">
                     <input type="search" class="form-control border-3 fs-3 text-center"
@@ -336,77 +222,30 @@
 
 
 
-    </div>
+        </div>
 
-    <div id="reports" class="page" style="display: none;">
-        <h1>Reports</h1>
-    </div>
+        <div id="reports" class="page" style="display: none;">
+            <h1>Reports</h1>
+        </div>
     </div>
     </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
     <!-- Bootstrap 5 Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <!-- Custom JS -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('main-content');
-            const topbar = document.getElementById('topbar');
-            // const toggleBtn = document.getElementById('toggleSidebar');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const menuItems = document.querySelectorAll('.sidebar-item');
-            const pages = document.querySelectorAll('.page');
-            // only for testing
-            let lastPage = "inventory";  // set inventory as the default
-            pages.forEach(page => {
-                page.style.display = (page.id === lastPage) ? "block" : "none";
-            });
-            menuItems.forEach(item => {
-                item.classList.toggle("active", item.getAttribute("data-page") === lastPage);
-            });
-            //////////////////////////////////////////////////////
-
-
-            mobileMenuBtn.addEventListener("click", function () {
-                sidebar.classList.toggle("show");
-            });
-
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', function (event) {
-                if (window.innerWidth < 992) {
-                    const isClickInsideSidebar = sidebar.contains(event.target);
-                    const isClickOnMobileMenuBtn = mobileMenuBtn.contains(event.target);
-                    if (!isClickInsideSidebar && !isClickOnMobileMenuBtn) {
-                        sidebar.classList.remove('show');
-                    }
-                }
-            });
-
-            // Switch content
-            menuItems.forEach(item => {
-                item.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    menuItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    const pageId = this.getAttribute('data-page');
-                    pages.forEach(page => {
-                        page.style.display = page.id === pageId ? 'block' : 'none';
-                    });
-                    if (window.innerWidth < 992) sidebar.classList.remove('show');
-                });
-            });
-
-            // Handle window resize
-            window.addEventListener('resize', function () {
-                if (window.innerWidth >= 992) {
-                    sidebar.classList.remove('show'); // reset state
-                }
-            });
-        });
+        // fetch("inventoryFinal.json")
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         localStorage.setItem("inventory", JSON.stringify(data));
+        //         console.log("Inventory data loaded into LocalStorage --->");
+        //     });
     </script>
+    
+    <script src="main.js"></script>
 </body>
 
 </html>

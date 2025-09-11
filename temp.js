@@ -28,7 +28,7 @@ function renderInventory() {
             <tr>
                 <td>${inventoryItem[index].itemCode}</td>
                 <td>${inventoryItem[index].itemName}</td>
-                <td>${"LKR "+inventoryItem[index].price}</td>
+                <td>${"LKR " + inventoryItem[index].price}</td>
                 <td>${inventoryItem[index].discount}</td>
                 <td>${inventoryItem[index].time || ""}</td>
             </tr>
