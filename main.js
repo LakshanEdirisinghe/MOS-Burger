@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    let dbConnectonInventory; 
+    let dbConnectonInventory;
 
-    if (localStorage.getItem("inventory")!=null) {
+    if (localStorage.getItem("inventory") != null) {
         console.log("Inventory db is connected");
 
-        dbConnectonInventory=true;
-        
-        
-    }else{
+        dbConnectonInventory = true;
+
+
+    } else {
         console.log("Inventory db Connection Error");
     }
     const sidebar = document.getElementById('sidebar');
@@ -19,18 +19,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuItems = document.querySelectorAll('.sidebar-item');
     const pages = document.querySelectorAll('.page');
 
-    const inventoryDataSet = JSON.parse(localStorage.getItem("inventory"));
+    const inventoryDataSet = JSON.parse(localStorage.getItem("inventory")) || [];
     const table = document.getElementById("inventoryTable");
     let tbody = document.getElementById("tableBody");
 
     //table manupilation
-    // renderInventory();
+
     if (dbConnectonInventory) {
         renderInventory();
     }
+    function autoTotal() {
+        let newqty = parseInt(document.getElementById("qty")?.value) || 0;
+        const newprice = parseFloat(document.getElementById("price")?.value) || 0;
+
+        document.getElementById("totalAmount").value = (newprice * newqty) + " LKR" || 0.00;
+
+    }
+
+    document.getElementById("price").addEventListener('keyup', autoTotal);
+    document.getElementById("qty").addEventListener('keyup', autoTotal);
 
 
-    
+
 
 
     function renderInventory() {
@@ -51,11 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td class="text-end">${(inventoryDataSet[index].price * inventoryDataSet[index].qty).toLocaleString()}</td>
                     <td class="text-center">
                         <span class="badge ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
-                                        ? "text-bg-success"
-                                        : "text-bg-danger"}">
+                    ? "text-bg-success"
+                    : "text-bg-danger"}">
                         ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
-                                        ? "In Stock"
-                                        : "Low Stock"}
+                    ? "In Stock"
+                    : "Low Stock"}
                         </span>
                     </td>
                     <td class="text-center">
@@ -77,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById("inventoryForm");
 
     form.addEventListener("submit", function (e) {
+
         e.preventDefault(); // stop form default reload
 
         let DataSet = JSON.parse(localStorage.getItem("inventory")) || [];
@@ -103,20 +114,26 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Push new row into dataset
-        DataSet.push(newItem);
-        localStorage.setItem("inventory", JSON.stringify(DataSet));
+        let isOk = confirm("Are you Sure? ");
 
-        // Re-render table
-        renderInventory();
 
-        // Reset form
-        // form.reset();
-        location.reload();
+        if (isOk) {
+            DataSet.push(newItem);
+            localStorage.setItem("inventory", JSON.stringify(DataSet));
+
+            // Re-render table
+            renderInventory();
+
+
+            // Reset form
+            // form.reset();
+            
+            location.reload();
+        }else{
+            alert.remove();
+        }
+
     });
-
-
-
-
 
 
 

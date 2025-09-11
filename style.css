@@ -7,8 +7,16 @@
     --sidebar-hover-bg: #34495e;
     --topbar-height: 60px;
     --transition-speed: 0.3s;
-    --light-team-brown:#DDAA82; 
-    --dark-team-brown:#A64931; 
+    --light-team-brown: #DDAA82;
+    --dark-team-brown: #A64931;
+}
+
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    max-width: 400px;
 }
 
 
@@ -197,12 +205,14 @@ body {
     margin-left: -6px;
     width: 222px;
 }
+
 .card {
     border: none;
     border-radius: 1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
+
 .card {
     border: none;
     border-radius: 1px;
