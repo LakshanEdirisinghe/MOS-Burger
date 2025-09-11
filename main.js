@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     let dbConnectonInventory;
 
     if (localStorage.getItem("inventory") != null) {
@@ -19,15 +18,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuItems = document.querySelectorAll('.sidebar-item');
     const pages = document.querySelectorAll('.page');
 
+
+
+    //table manupilation
     const inventoryDataSet = JSON.parse(localStorage.getItem("inventory")) || [];
     const table = document.getElementById("inventoryTable");
     let tbody = document.getElementById("tableBody");
 
-    //table manupilation
-
     if (dbConnectonInventory) {
         renderInventory();
     }
+
     function autoTotal() {
         let newqty = parseInt(document.getElementById("qty")?.value) || 0;
         const newprice = parseFloat(document.getElementById("price")?.value) || 0;
@@ -38,9 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById("price").addEventListener('keyup', autoTotal);
     document.getElementById("qty").addEventListener('keyup', autoTotal);
-
-
-
 
 
     function renderInventory() {
@@ -120,20 +118,65 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isOk) {
             DataSet.push(newItem);
             localStorage.setItem("inventory", JSON.stringify(DataSet));
-
-            // Re-render table
             renderInventory();
 
-
-            // Reset form
-            // form.reset();
-            
             location.reload();
-        }else{
+        } else {
             alert.remove();
         }
 
     });
+
+    // Search Box with Suggestions
+    const searchBox = document.getElementById("searchBox");
+    const suggestions = document.getElementById("suggestions");
+
+    searchBox.addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        suggestions.innerHTML = "";
+
+        if (query.length === 0) {
+            suggestions.classList.add("d-none");
+            return;
+        }
+
+        // Filter by itemName OR itemCode OR category
+        const filtered = inventoryDataSet.filter(item =>
+            item.itemName.toLowerCase().includes(query) ||
+            item.itemCode.toLowerCase().includes(query) ||
+            item.category.toLowerCase().includes(query)
+        );
+
+        if (filtered.length === 0) {
+            suggestions.classList.add("d-none");
+            return;
+        }
+
+        // Show results
+        filtered.forEach(item => {
+            const div = document.createElement("div");
+            div.classList.add("suggestion-item");
+            div.innerHTML = `<strong>${item.itemName}</strong> <small>(${item.itemCode}, ${item.category})</small>`;
+
+            div.addEventListener("click", () => {
+                searchBox.value = item.itemName; // fill only name
+                suggestions.classList.add("d-none");
+            });
+
+            suggestions.appendChild(div);
+        });
+
+        suggestions.classList.remove("d-none");
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
+            suggestions.classList.add("d-none");
+        }
+    });
+
+
 
 
 
