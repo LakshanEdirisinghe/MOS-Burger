@@ -167,6 +167,57 @@
 
             </div>
 
+            <div class="container my-4">
+                <h4 class="mb-3">Add New Inventory Item</h4>
+                <form id="inventoryForm" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="itemCode" class="form-label">Item Code</label>
+                        <input type="text" class="form-control" id="itemCode" placeholder="B1008">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="itemName" class="form-label">Item Name</label>
+                        <input type="text" class="form-control" id="itemName" placeholder="Bacon Burger">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="category" placeholder="Burger">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="supplier" class="form-label">Supplier</label>
+                        <input type="text" class="form-control" id="supplier" placeholder="MOS Kitchen">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="qty" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="qty" placeholder="15">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="reorderPoint" class="form-label">Reorder Point</label>
+                        <input type="number" class="form-control" id="reorderPoint" placeholder="6">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="price" class="form-label">Unit Price</label>
+                        <input type="number" class="form-control" id="price" placeholder="650">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="discount" class="form-label">Discount (%)</label>
+                        <input type="number" step="0.01" class="form-control" id="discount" placeholder="15">
+                    </div>
+
+                    <!-- Auto-calculated fields -->
+                    <div class="col-md-4">
+                        <label class="form-label">Total (Auto)</label>
+                        <input type="text" class="form-control" id="totalAmount" readonly>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary">Add Item</button>
+                    </div>
+                </form>
+            </div>
+
+
 
 
             <div class="table-responsive">
@@ -237,14 +288,17 @@
 
     <!-- Custom JS -->
     <script>
-        fetch("inventoryFinal.json")
-            .then(res => res.json())
-            .then(data => {
-                localStorage.setItem("inventory", JSON.stringify(data));
-                console.log("Inventory data loaded into LocalStorage --->");
-            });
+
+        if (localStorage.getItem("inventory") == null) {
+            fetch("inventoryFinal.json")
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem("inventory", JSON.stringify(data));
+                    console.log("Inventory data is loaded into LocalStorage ");
+                });
+        }
     </script>
-    
+
     <script src="main.js"></script>
 </body>
 
