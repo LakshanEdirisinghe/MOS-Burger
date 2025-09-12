@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <ul class="dropdown-menu">
 
 
-                    <li><a href="#" class="dropdown-item  btn-update" prKey="${item.itemCode}"><i class="bi bi-arrow-repeat"></i> Update</a></li>
-                <li><a href="#" class="dropdown-item  btn-delete" prKey="${item.itemCode}"><i class="bi bi-ban"></i> Delete</a></li>
+                    <li><a href="#" class="dropdown-item  btn-update" prKey="${item.itemCode}" data-bs-toggle="modal" data-bs-target="#inventoryUpdateModal"><i class="bi bi-arrow-repeat"></i> Update</a></li>
+                <li><a href="#" class="dropdown-item  btn-delete" prKey="${item.itemCode}" ><i class="bi bi-ban"></i> Delete</a></li>
 
 
                     </ul>
@@ -123,11 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("price").addEventListener('keyup', autoTotal);
     document.getElementById("qty").addEventListener('keyup', autoTotal);
 
-
-
-    const form = document.getElementById("inventoryForm");
-
-    form.addEventListener("submit", function (e) {
+    function addData(e) {
 
         e.preventDefault(); // stop form default reload
 
@@ -166,7 +162,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
 
-    });
+    }
+
+
+
+    const form = document.getElementById("inventoryForm");
+
+    form.addEventListener("submit", addData);
 
 
     // only for testing
@@ -187,10 +189,63 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < updateBtns.length; i++) {
         updateBtns[i].addEventListener("click", function () {
             let code = this.getAttribute("prKey");
-            console.log(code);
+            radyToUpdateItem(code);
 
         });
     }
+
+    function radyToUpdateItem(itemCode) {
+        const conferm = confirm("Do you want to update this data row ?");
+
+        if (conferm === true) {
+            let data = JSON.parse(localStorage.getItem("inventory")) || [];
+            const item = data.find(item => item.itemCode === itemCode);
+            const index = data.findIndex(item => item.itemCode === itemCode);
+
+            console.log("Editing Item:", item);
+
+            if (item) {
+                // Fill form fields with existing values
+                document.getElementById("itemCode").value = item.itemCode;
+                document.getElementById("itemName").value = item.itemName;
+                document.getElementById("category").value = item.category;
+                document.getElementById("supplier").value = item.supplier;
+                document.getElementById("qty").value = item.qty;
+                document.getElementById("reorderPoint").value = item.reorderPoint;
+                document.getElementById("price").value = item.price;
+                document.getElementById("discount").value = item.discount * 100;
+                document.getElementById("totalAmount").value = (item.qty * item.price) + " LKR"
+
+                const updateForm = document.getElementById("inventoryUpdateForm");
+
+                // Clear any old event listeners
+                updateForm.onsubmit = function (e) {
+                    e.preventDefault();
+
+                    // Read updated values
+                    data[index].itemName = document.getElementById("itemName").value.trim();
+                    data[index].category = document.getElementById("category").value.trim();
+                    data[index].supplier = document.getElementById("supplier").value.trim();
+                    data[index].qty = parseInt(document.getElementById("qty").value) || 0;
+                    data[index].reorderPoint = parseInt(document.getElementById("reorderPoint").value) || 0;
+                    data[index].price = parseFloat(document.getElementById("price").value) || 0;
+                    data[index].discount = (parseFloat(document.getElementById("discount").value) || 0) / 100;
+
+                    // Save back to localStorage
+                    localStorage.setItem("inventory", JSON.stringify(data));
+
+                    alert("Item updated successfully ✅");
+
+                    // Reload the table (or page)
+                    location.reload();
+                };
+            }
+        }
+    }
+
+
+
+
 
 
 
@@ -206,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const conferm = confirm("Do you want to delete this data row ?");
 
         if (conferm === true) {
-            const confermText = prompt("Type 'Delete' word this box !");
+            const confermText = prompt("Type 'Delete' word in this box !");
 
             if (confermText === "delete") {
                 let data = JSON.parse(localStorage.getItem("inventory")) || [];

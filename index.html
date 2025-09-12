@@ -152,7 +152,8 @@
                     <!-- desktop -->
                     <div class="row mt-5 ">
                         <div class="col-3 d-lg-block d-none">
-                            <button type="button" class="btn border-0 text-light fw-bold btn-lg " style="background-color:var(--dark-team-brown);" data-bs-toggle="modal"
+                            <button type="button" class="btn border-0 text-light fw-bold btn-lg "
+                                style="background-color:var(--dark-team-brown);" data-bs-toggle="modal"
                                 data-bs-target="#inventoryModal">
                                 <div class="row align-items-center">
                                     <div class="col-8">Add New <br>Item</div>
@@ -180,22 +181,23 @@
             </div>
 
             <!-- data update Form-->
-             
 
-            <!-- <div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="inventoryModalLabel"
+
+            <div class="modal fade" id="inventoryUpdateModal" tabindex="-1" aria-labelledby="inventoryUpdateModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="inventoryModalLabel">Add New Inventory
-                                Item</h5>
+                            <h5 class="modal-title " id="inventoryUpdateModalLabel">Update Inventory Items</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="inventoryForm" class="row g-3">
+                            <form id="inventoryUpdateForm" class="row g-3">
                                 <div class="col-md-4">
                                     <label for="itemCode" class="form-label">Item Code</label>
-                                    <input type="text" class="form-control" id="itemCode" placeholder="B1008" required>
+                                    <input type="text" class="form-control" id="itemCode" placeholder="B1008" readonly
+                                        required>
+
                                 </div>
                                 <div class="col-md-4">
                                     <label for="itemName" class="form-label">Item Name</label>
@@ -238,18 +240,20 @@
                                 </div>
                                 <div class="col-12">
                                     <button style="background-color:var(--dark-team-brown);" type="submit"
-                                        id="btnSubmit" class="btn border-0 btn-primary">Add
-                                        Item</button>
+                                        id="btnUpdate" class="btn border-0 btn-primary">Update Item</button>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
+                            <div class="alert alert-secondary text-uppercase fw-bold" role="alert">
+                                If you need to update item code, delete this row and add again it as a new item 
+                            </div>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
-            </div> -->
-            
+            </div>
+
             <!-- data insert Form-->
 
             <div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="inventoryModalLabel"
@@ -258,7 +262,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="inventoryModalLabel">Add New Inventory
-                                Item</h5>
+                                Items</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
