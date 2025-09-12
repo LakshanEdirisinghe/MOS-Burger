@@ -68,8 +68,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         <i class="fa-solid fa-gear fa-lg"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Update</a></li>
-                        <li><a class="dropdown-item" href="#">Delete</a></li>
+
+
+                    <li><a href="#" class="dropdown-item  btn-update" prKey="${item.itemCode}"><i class="bi bi-arrow-repeat"></i> Update</a></li>
+                <li><a href="#" class="dropdown-item  btn-delete" prKey="${item.itemCode}"><i class="bi bi-ban"></i> Delete</a></li>
+
+
                     </ul>
                 </div>
             </td>
@@ -120,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("qty").addEventListener('keyup', autoTotal);
 
 
-    
+
     const form = document.getElementById("inventoryForm");
 
     form.addEventListener("submit", function (e) {
@@ -173,6 +177,54 @@ document.addEventListener('DOMContentLoaded', function () {
     menuItems.forEach(item => {
         item.classList.toggle("active", item.getAttribute("data-page") === lastPage);
     });
+
+
+    // update and deleting data
+
+    let updateBtns = document.getElementsByClassName("btn-update");
+    let deleteBtns = document.getElementsByClassName("btn-delete");
+
+    for (let i = 0; i < updateBtns.length; i++) {
+        updateBtns[i].addEventListener("click", function () {
+            let code = this.getAttribute("prKey");
+            console.log(code);
+
+        });
+    }
+
+
+
+    for (let i = 0; i < deleteBtns.length; i++) {
+        deleteBtns[i].addEventListener("click", function () {
+            let code = this.getAttribute("prKey");
+            deleteItem(code);
+        });
+    }
+
+    function deleteItem(itemCode) {
+
+        const conferm = confirm("Do you want to delete this data row ?");
+
+        if (conferm === true) {
+            const confermText = prompt("Type 'Delete' word this box !");
+
+            if (confermText === "delete") {
+                let data = JSON.parse(localStorage.getItem("inventory")) || [];
+                data = data.filter(item => item.itemCode !== itemCode); // remove matching row
+                localStorage.setItem("inventory", JSON.stringify(data));
+                // renderTable(data); // refresh without reload
+                location.reload();
+
+            } else {
+                alert("Data deleting processing is canceled")
+            }
+
+        } else {
+            alert("Data deleting processing is canceled")
+        }
+
+    }
+
     //////////////////////////////////////////////////////tab switch managing
 
 
@@ -217,43 +269,43 @@ document.addEventListener('DOMContentLoaded', function () {
 /////extra
 
 // function renderInventory() {
-    //     // Clear only tbody rows, not the whole table
-    //     tbody.innerHTML = "";
+//     // Clear only tbody rows, not the whole table
+//     tbody.innerHTML = "";
 
-    //     for (let index = inventoryDataSet.length - 1; index >= 0; index--) {
-    //         let row = `
-    //                 <tr>
-    //                 <td><span class="text-center">${inventoryDataSet[index].itemCode}</span></td>
-    //                 <td>${inventoryDataSet[index].itemName}</td>
-    //                 <td>${inventoryDataSet[index].category}</td>
-    //                 <td>${inventoryDataSet[index].supplier}</td>
-    //                 <td class="text-end">${inventoryDataSet[index].qty}</td>
-    //                 <td class="text-end">${inventoryDataSet[index].reorderPoint}</td>
-    //                 <td class="text-end">${(inventoryDataSet[index].discount * 100).toFixed(0)}%</td>
-    //                 <td class="text-end">${inventoryDataSet[index].price}</td>
-    //                 <td class="text-end">${(inventoryDataSet[index].price * inventoryDataSet[index].qty).toLocaleString()}</td>
-    //                 <td class="text-center">
-    //                     <span class="badge ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
-    //                 ? "text-bg-success"
-    //                 : "text-bg-danger"}">
-    //                     ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
-    //                 ? "In Stock"
-    //                 : "Low Stock"}
-    //                     </span>
-    //                 </td>
-    //                 <td class="text-center">
-    //                     <div class="btn-group">
-    //                     <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    //                         <i class="fa-solid fa-gear fa-lg"></i>
-    //                     </button>
-    //                     <ul class="dropdown-menu">
-    //                         <li><a class="dropdown-item" href="#">Update</a></li>
-    //                         <li><a class="dropdown-item" href="#">Delete</a></li>
-    //                     </ul>
-    //                     </div>
-    //                 </td>
-    //                 </tr>`;
-    //         tbody.innerHTML += row;
-    //     }
-    // }
-    // inside DOMContentLoaded
+//     for (let index = inventoryDataSet.length - 1; index >= 0; index--) {
+//         let row = `
+//                 <tr>
+//                 <td><span class="text-center">${inventoryDataSet[index].itemCode}</span></td>
+//                 <td>${inventoryDataSet[index].itemName}</td>
+//                 <td>${inventoryDataSet[index].category}</td>
+//                 <td>${inventoryDataSet[index].supplier}</td>
+//                 <td class="text-end">${inventoryDataSet[index].qty}</td>
+//                 <td class="text-end">${inventoryDataSet[index].reorderPoint}</td>
+//                 <td class="text-end">${(inventoryDataSet[index].discount * 100).toFixed(0)}%</td>
+//                 <td class="text-end">${inventoryDataSet[index].price}</td>
+//                 <td class="text-end">${(inventoryDataSet[index].price * inventoryDataSet[index].qty).toLocaleString()}</td>
+//                 <td class="text-center">
+//                     <span class="badge ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
+//                 ? "text-bg-success"
+//                 : "text-bg-danger"}">
+//                     ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
+//                 ? "In Stock"
+//                 : "Low Stock"}
+//                     </span>
+//                 </td>
+//                 <td class="text-center">
+//                     <div class="btn-group">
+//                     <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+//                         <i class="fa-solid fa-gear fa-lg"></i>
+//                     </button>
+//                     <ul class="dropdown-menu">
+//                         <li><a class="dropdown-item" href="#">Update</a></li>
+//                         <li><a class="dropdown-item" href="#">Delete</a></li>
+//                     </ul>
+//                     </div>
+//                 </td>
+//                 </tr>`;
+//         tbody.innerHTML += row;
+//     }
+// }
+// inside DOMContentLoaded

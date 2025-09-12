@@ -1,267 +1,35 @@
-<!-- <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-            <table id="inventoryTable" class="table table-hover table-bordered align-middle">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Item Code</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Suppler</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Reorder Point</th>
-                        <th scope="col">Discount</th>
-                        <th scope="col" class="text-start">Unit Price (LKR)</th>
-                        <th scope="col" class="text-start">Total Price (LKR)</th>
-                        <th scope="col" class="text-start">On Hand Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td colspan="11" class="fw-bold display-3 text-center text-light">No Data !</td>
-                    </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+    <!-- Button -->
+<button type="button" class="btn btn-primary" 
+        data-bs-toggle="modal" 
+        data-bs-target="#inventoryModal">
+  Add New
+</button>
 
-                </tbody>
-
-            </table>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="inventoryModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Item</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Content goes here...
+      </div>
     </div>
-
-            </div>
-
-        </div>-->
-////////////////////////////////////////////////////
-
-
-        <div id="inventory" class="page active ms-3 me-3" style="display: none;">
-
-            <!-- head -->
-            <!-- <div class="card">
-                <div class="card-header">
-                                        <div class="row justify-content-center">
-
-                        <!-- mobile search bar-->
-                        <div class="col-12 d-flex d-lg-none d-block gap-2">
-
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="search" class="form-control border-3 text-center"
-                                    placeholder="Type Name Or ID" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm"
-                                    style="border-color: var(--light-team-brown); font-size: 1rem;">
-                            </div>
-                            <div>
-                                <button type="button" class="btn  btn-md"
-                                    style="background-color:var(--light-team-brown);"><i
-                                        class="fa-sharp fa-solid fa-magnifying-glass fa-lg "
-                                        style="color: #000000;"></i></button>
-                            </div>
-                        </div>
-                        <!-- desktop search bar-->
-                        <div class="col-12 d-none d-lg-flex gap-3">
-
-                            <div class="input-group input-group-lg mb-3">
-
-                                <input type="text" style="height: 51px; border-color: var(--light-team-brown) ;"
-                                    class="form-control border-3 fs-3 text-center"
-                                    placeholder="Search Items By Name Or ID" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-lg">
-                            </div>
-
-                            <div>
-                                <button type="button" class="btn btn-lg border-0"
-                                    style="height: 51px; width: 100px; background-color:var(--light-team-brown);">
-                                    <i class="fa-sharp fa-solid fa-magnifying-glass fa-xl" style="color: #000000;"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Alert container for success message -->
-            <div class="alert-container" id="alertContainer"></div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="inventoryModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="inventoryModalLabel">Add New Inventory Item</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="inventoryForm" class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="itemCode" class="form-label">Item Code</label>
-                                    <input type="text" class="form-control" id="itemCode" placeholder="B1008" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="itemName" class="form-label">Item Name</label>
-                                    <input type="text" class="form-control" id="itemName" placeholder="Bacon Burger"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="category" class="form-label">Category</label>
-                                    <input type="text" class="form-control" id="category" placeholder="Burger" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="supplier" class="form-label">Supplier</label>
-                                    <input type="text" class="form-control" id="supplier" placeholder="MOS Kitchen"
-                                        required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="qty" class="form-label">Quantity</label>
-                                    <input type="number" class="form-control" id="qty" placeholder="15" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="reorderPoint" class="form-label">Reorder Point</label>
-                                    <input type="number" class="form-control" id="reorderPoint" placeholder="6"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="price" class="form-label">Unit Price</label>
-                                    <input type="number" class="form-control" id="price" placeholder="650" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="discount" class="form-label">Discount (%)</label>
-                                    <input type="number" step="0.01" class="form-control" id="discount" placeholder="15"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Total (Auto)</label>
-                                    <input type="text" class="form-control" id="totalAmount" readonly>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" id="btnSubmit"
-                                        style="background-color:var(--dark-team-brown);"
-                                        class="btn border-0 btn-primary">Add Item</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> close inventory page -->
-
-
-        ////////////////////////////////
-
-
-                <div id="inventory" class="page active ms-3 me-3" style="display: none;">
-
-            <!-- head -->
-            <div class="card">
-                <div class="card-header">
-                                        <div class="row justify-content-center">
-
-                        <!-- mobile search bar-->
-                        <div class="col-12 d-flex d-lg-none d-block gap-2">
-
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="search" class="form-control border-3 text-center"
-                                    placeholder="Type Name Or ID" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm"
-                                    style="border-color: var(--light-team-brown); font-size: 1rem;">
-                            </div>
-                            <div>
-                                <button type="button" class="btn  btn-md"
-                                    style="background-color:var(--light-team-brown);"><i
-                                        class="fa-sharp fa-solid fa-magnifying-glass fa-lg "
-                                        style="color: #000000;"></i></button>
-                            </div>
-                        </div>
-                        <!-- desktop search bar-->
-                        <div class="col-12 d-none d-lg-flex gap-3">
-
-                            <div class="input-group input-group-lg mb-3">
-
-                                <input type="text" style="height: 51px; border-color: var(--light-team-brown) ;"
-                                    class="form-control border-3 fs-3 text-center"
-                                    placeholder="Search Items By Name Or ID" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-lg">
-                            </div>
-
-                            <div>
-                                <button type="button" class="btn btn-lg border-0"
-                                    style="height: 51px; width: 100px; background-color:var(--light-team-brown);">
-                                    <i class="fa-sharp fa-solid fa-magnifying-glass fa-xl" style="color: #000000;"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Alert container for success message -->
-            <div class="alert-container" id="alertContainer"></div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="inventoryModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="inventoryModalLabel">Add New Inventory Item</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="inventoryForm" class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="itemCode" class="form-label">Item Code</label>
-                                    <input type="text" class="form-control" id="itemCode" placeholder="B1008" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="itemName" class="form-label">Item Name</label>
-                                    <input type="text" class="form-control" id="itemName" placeholder="Bacon Burger"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="category" class="form-label">Category</label>
-                                    <input type="text" class="form-control" id="category" placeholder="Burger" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="supplier" class="form-label">Supplier</label>
-                                    <input type="text" class="form-control" id="supplier" placeholder="MOS Kitchen"
-                                        required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="qty" class="form-label">Quantity</label>
-                                    <input type="number" class="form-control" id="qty" placeholder="15" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="reorderPoint" class="form-label">Reorder Point</label>
-                                    <input type="number" class="form-control" id="reorderPoint" placeholder="6"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="price" class="form-label">Unit Price</label>
-                                    <input type="number" class="form-control" id="price" placeholder="650" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="discount" class="form-label">Discount (%)</label>
-                                    <input type="number" step="0.01" class="form-control" id="discount" placeholder="15"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Total (Auto)</label>
-                                    <input type="text" class="form-control" id="totalAmount" readonly>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" id="btnSubmit"
-                                        style="background-color:var(--dark-team-brown);"
-                                        class="btn border-0 btn-primary">Add Item</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- close inventory page -->
+  </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

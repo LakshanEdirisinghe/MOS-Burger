@@ -6,46 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inventory Search Table</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <script src="https://kit.fontawesome.com/a2d9d5a64c.js" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
-<body class="p-4">
+<body class="m-4">
 
-  <div class="card shadow">
-    <div class="card-header">
-      <input type="text" id="searchBox" class="form-control" placeholder="Search by code, name or category...">
-    </div>
-
+  <div class="card">
     <div class="card-body">
-      <div class="table-responsive">
-        <table id="inventoryTable" class="table table-hover table-bordered align-middle">
-          <thead class="table-dark">
-            <tr>
-              <th>Item Code</th>
-              <th>Item Name</th>
-              <th>Category</th>
-              <th>Supplier</th>
-              <th class="text-end">Qty</th>
-              <th class="text-end">Reorder Point</th>
-              <th class="text-end">Discount</th>
-              <th class="text-end">Unit Price (LKR)</th>
-              <th class="text-end">Total Price (LKR)</th>
-              <th class="text-center">On Hand Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody">
-            <tr>
-              <td colspan="11" class="fw-bold text-center text-muted">No Data!</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Item Code</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Reorder Point</th>
+            <th scope="col">Discount</th>
+            <th scope="col" class="text-start">Unit Price (LKR)</th>
+            <th scope="col" class="text-start">Total Price (LKR)</th>
+            <th scope="col" class="text-start">On Hand Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
-    // --- Inventory data ---
-    const inventory = [
+    let inventoryData = [
       {
         "itemCode": "B1001",
         "itemName": "Classic Burger (Large)",
@@ -75,82 +68,104 @@
         "supplier": "Lanka Meats",
         "qty": 12,
         "reorderPoint": 5
-      },
-      {
-        "itemCode": "B1004",
-        "itemName": "Chicken Burger (Large)",
-        "price": 1400,
-        "discount": 0,
-        "category": "Burger",
-        "supplier": "MOS Kitchen",
-        "qty": 18,
-        "reorderPoint": 8
       }
     ];
+    console.log(JSON.parse(localStorage.getItem("invdb")) === null);
 
-    const tableBody = document.getElementById("tableBody");
-    const searchBox = document.getElementById("searchBox");
+    if (JSON.parse(localStorage.getItem("invdb")) === null) {
+      localStorage.setItem("invdb", JSON.stringify(inventoryData));
 
-    // --- Function to render table rows ---
-    function renderTable(data) {
-      tableBody.innerHTML = "";
+    }
+    console.log(JSON.parse(localStorage.getItem("invdb")) === null);
 
-      if (data.length === 0) {
-        tableBody.innerHTML = `<tr>
-          <td colspan="11" class="fw-bold text-center text-muted">No Matching Items!</td>
-        </tr>`;
-        return;
-      }
 
-      data.forEach(item => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${item.itemCode}</td>
-          <td>${item.itemName}</td>
-          <td>${item.category}</td>
-          <td>${item.supplier}</td>
-          <td class="text-end">${item.qty}</td>
-          <td class="text-end">${item.reorderPoint}</td>
-          <td class="text-end">${(item.discount * 100).toFixed(0)}%</td>
-          <td class="text-end">${item.price.toLocaleString()}</td>
-          <td class="text-end">${(item.price * item.qty).toLocaleString()}</td>
+    let tbody = document.getElementById("tableBody");
+    let dataSet = JSON.parse(localStorage.getItem("invdb"));
+
+    // clear tbody first
+    tbody.innerHTML = "";
+
+    // render rows
+    for (let index = 0; index < dataSet.length; index++) {
+      let row = `
+        <tr>
+          <td><span class="text-center">${dataSet[index].itemCode}</span></td>
+          <td>${dataSet[index].itemName}</td>
+          <td>${dataSet[index].category}</td>
+          <td>${dataSet[index].supplier}</td>
+          <td class="text-end">${dataSet[index].qty}</td>
+          <td class="text-end">${dataSet[index].reorderPoint}</td>
+          <td class="text-end">${(dataSet[index].discount * 100).toFixed(0)}%</td>
+          <td class="text-end">${dataSet[index].price}</td>
+          <td class="text-end">${(dataSet[index].price * dataSet[index].qty).toLocaleString()}</td>
           <td class="text-center">
-            <span class="badge ${item.qty > item.reorderPoint ? "text-bg-success" : "text-bg-danger"}">
-              ${item.qty > item.reorderPoint ? "In Stock" : "Low Stock"}
+            <span class="badge ${dataSet[index].qty > dataSet[index].reorderPoint ? "text-bg-success" : "text-bg-danger"}">
+              ${dataSet[index].qty > dataSet[index].reorderPoint ? "In Stock" : "Low Stock"}
             </span>
           </td>
           <td class="text-center">
             <div class="btn-group">
-              <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                ⚙
+              <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-gear fa-lg"></i>
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Update</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
+                <li><a href="#" class="dropdown-item  btn-update" prKey="${dataSet[index].itemCode}"><i class="bi bi-arrow-repeat"></i> Update</a></li>
+                <li><a href="#" class="dropdown-item  btn-delete" prKey="${dataSet[index].itemCode}"><i class="bi bi-ban"></i> Delete</a></li>
+
+                
               </ul>
             </div>
-          </td>`;
-        tableBody.appendChild(row);
+          </td>
+        </tr>`;
+      tbody.innerHTML += row;
+    }
+
+    // attach events using normal for loop
+    let updateBtns = document.getElementsByClassName("btn-update");
+    let deleteBtns = document.getElementsByClassName("btn-delete");
+
+    for (let i = 0; i < updateBtns.length; i++) {
+      updateBtns[i].addEventListener("click", function () {
+        let code = this.getAttribute("prKey");
+        console.log(code);
+
+      });
+    }
+    
+
+
+    for (let i = 0; i < deleteBtns.length; i++) {
+      deleteBtns[i].addEventListener("click", function () {
+        let code = this.getAttribute("prKey");
+        deleteItem(code);
       });
     }
 
-    // --- Initial render ---
-    renderTable(inventory);
-    
+    function deleteItem(itemCode) {
 
-    // --- Search filter ---
-    searchBox.addEventListener("input", () => {
-      const query = searchBox.value.toLowerCase();
-      const filtered = inventory.filter(item =>
-        item.itemName.toLowerCase().includes(query) ||
-        item.itemCode.toLowerCase().includes(query) ||
-        item.category.toLowerCase().includes(query)
-      );
-      renderTable(filtered);
-    });
+      const conferm = confirm("Do you want to delete this data row ?");
+
+      if (conferm === true) {
+        const confermText = prompt("Type 'Delete' word this box !");
+
+        if (confermText === "delete") {
+          let data = JSON.parse(localStorage.getItem("invdb")) || [];
+          data = data.filter(item => item.itemCode !== itemCode); // remove matching row
+          localStorage.setItem("invdb", JSON.stringify(data));
+          // renderTable(data); // refresh without reload
+          location.reload();
+
+        } else {
+          alert("Data deleting processing is canceled")
+        }
+
+      } else {
+        alert("Data deleting processing is canceled")
+      }
+
+    }
+
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
