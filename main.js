@@ -25,9 +25,88 @@ document.addEventListener('DOMContentLoaded', function () {
     const table = document.getElementById("inventoryTable");
     let tbody = document.getElementById("tableBody");
 
-    if (dbConnectonInventory) {
-        renderInventory();
+    // Search Box with Suggestions
+    const tableBody = document.getElementById("tableBody");
+    const searchBoxDes = document.getElementById("searchBox");
+    const searchBoxMob = document.getElementById("searchBox-m");
+
+    // --- Function to render table rows ---
+    function renderTable(data) {
+        tableBody.innerHTML = "";
+
+        if (data.length === 0) {
+            tableBody.innerHTML = `<tr>
+          <td colspan="11" class="fw-bold text-center text-muted">No Matching Items!</td>
+        </tr>`;
+            return;
+        }
+
+        for (let i = data.length - 1; i >= 0; i--) {
+            const item = data[i];
+            const row = document.createElement("tr");
+            row.innerHTML = `
+          <tr>
+            <td><span class="text-center">${item.itemCode}</span></td>
+            <td>${item.itemName}</td>
+            <td>${item.category}</td>
+            <td>${item.supplier}</td>
+            <td class="text-end">${item.qty}</td>
+            <td class="text-end">${item.reorderPoint}</td>
+            <td class="text-end">${(item.discount * 100).toFixed(0)}%</td>
+            <td class="text-end">${item.price}</td>
+            <td class="text-end">${(item.price * item.qty).toLocaleString()}</td>
+            <td class="text-center">
+                <span class="badge ${item.qty > item.reorderPoint
+                    ? "text-bg-success"
+                    : "text-bg-danger"}">
+                    ${item.qty > item.reorderPoint ? "In Stock" : "Low Stock"}
+                </span>
+            </td>
+            <td class="text-center">
+                <div class="btn-group">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-gear fa-lg"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Update</a></li>
+                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                    </ul>
+                </div>
+            </td>
+          </tr>`;
+            tableBody.appendChild(row);
+        }
     }
+
+
+    // --- Initial render ---
+    // renderTable(inventoryDataSet);
+    if (dbConnectonInventory) {
+        renderTable(inventoryDataSet);
+    }
+
+    // --- Search filter uses the same renderTable ---
+    function Searchfilter(tag) {
+        const query = tag.value.toLowerCase();
+        const filtered = [];
+
+        for (let i = 0; i < inventoryDataSet.length; i++) {
+            const item = inventoryDataSet[i];
+
+            if (
+                item.itemName.toLowerCase().includes(query) ||
+                item.itemCode.toLowerCase().includes(query) ||
+                item.category.toLowerCase().includes(query)
+            ) {
+                filtered.push(item);
+            }
+        }
+
+        renderTable(filtered);
+    }
+
+    searchBoxMob.addEventListener("input", e => Searchfilter(e.target));
+    searchBoxDes.addEventListener("input", e => Searchfilter(e.target));
 
     function autoTotal() {
         let newqty = parseInt(document.getElementById("qty")?.value) || 0;
@@ -41,47 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("qty").addEventListener('keyup', autoTotal);
 
 
-    function renderInventory() {
-        // Clear only tbody rows, not the whole table
-        tbody.innerHTML = "";
-
-        for (let index = inventoryDataSet.length - 1; index >= 0; index--) {
-            let row = `
-                    <tr>
-                    <td><span class="text-center">${inventoryDataSet[index].itemCode}</span></td>
-                    <td>${inventoryDataSet[index].itemName}</td>
-                    <td>${inventoryDataSet[index].category}</td>
-                    <td>${inventoryDataSet[index].supplier}</td>
-                    <td class="text-end">${inventoryDataSet[index].qty}</td>
-                    <td class="text-end">${inventoryDataSet[index].reorderPoint}</td>
-                    <td class="text-end">${(inventoryDataSet[index].discount * 100).toFixed(0)}%</td>
-                    <td class="text-end">${inventoryDataSet[index].price}</td>
-                    <td class="text-end">${(inventoryDataSet[index].price * inventoryDataSet[index].qty).toLocaleString()}</td>
-                    <td class="text-center">
-                        <span class="badge ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
-                    ? "text-bg-success"
-                    : "text-bg-danger"}">
-                        ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
-                    ? "In Stock"
-                    : "Low Stock"}
-                        </span>
-                    </td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                        <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-gear fa-lg"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Update</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                        </div>
-                    </td>
-                    </tr>`;
-            tbody.innerHTML += row;
-        }
-    }
-    // inside DOMContentLoaded
+    
     const form = document.getElementById("inventoryForm");
 
     form.addEventListener("submit", function (e) {
@@ -118,67 +157,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isOk) {
             DataSet.push(newItem);
             localStorage.setItem("inventory", JSON.stringify(DataSet));
-            renderInventory();
 
             location.reload();
-        } else {
-            alert.remove();
+
         }
 
     });
-
-    // Search Box with Suggestions
-    const searchBox = document.getElementById("searchBox");
-    const suggestions = document.getElementById("suggestions");
-
-    searchBox.addEventListener("input", function () {
-        const query = this.value.toLowerCase();
-        suggestions.innerHTML = "";
-
-        if (query.length === 0) {
-            suggestions.classList.add("d-none");
-            return;
-        }
-
-        // Filter by itemName OR itemCode OR category
-        const filtered = inventoryDataSet.filter(item =>
-            item.itemName.toLowerCase().includes(query) ||
-            item.itemCode.toLowerCase().includes(query) ||
-            item.category.toLowerCase().includes(query)
-        );
-
-        if (filtered.length === 0) {
-            suggestions.classList.add("d-none");
-            return;
-        }
-
-        // Show results
-        filtered.forEach(item => {
-            const div = document.createElement("div");
-            div.classList.add("suggestion-item");
-            div.innerHTML = `<strong>${item.itemName}</strong> <small>(${item.itemCode}, ${item.category})</small>`;
-
-            div.addEventListener("click", () => {
-                searchBox.value = item.itemName; // fill only name
-                suggestions.classList.add("d-none");
-            });
-
-            suggestions.appendChild(div);
-        });
-
-        suggestions.classList.remove("d-none");
-    });
-
-    // Close when clicking outside
-    document.addEventListener("click", function (e) {
-        if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
-            suggestions.classList.add("d-none");
-        }
-    });
-
-
-
-
 
 
     // only for testing
@@ -189,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
     menuItems.forEach(item => {
         item.classList.toggle("active", item.getAttribute("data-page") === lastPage);
     });
-    //////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////tab switch managing
 
 
     mobileMenuBtn.addEventListener("click", function () {
@@ -228,3 +212,48 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+/////extra
+
+// function renderInventory() {
+    //     // Clear only tbody rows, not the whole table
+    //     tbody.innerHTML = "";
+
+    //     for (let index = inventoryDataSet.length - 1; index >= 0; index--) {
+    //         let row = `
+    //                 <tr>
+    //                 <td><span class="text-center">${inventoryDataSet[index].itemCode}</span></td>
+    //                 <td>${inventoryDataSet[index].itemName}</td>
+    //                 <td>${inventoryDataSet[index].category}</td>
+    //                 <td>${inventoryDataSet[index].supplier}</td>
+    //                 <td class="text-end">${inventoryDataSet[index].qty}</td>
+    //                 <td class="text-end">${inventoryDataSet[index].reorderPoint}</td>
+    //                 <td class="text-end">${(inventoryDataSet[index].discount * 100).toFixed(0)}%</td>
+    //                 <td class="text-end">${inventoryDataSet[index].price}</td>
+    //                 <td class="text-end">${(inventoryDataSet[index].price * inventoryDataSet[index].qty).toLocaleString()}</td>
+    //                 <td class="text-center">
+    //                     <span class="badge ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
+    //                 ? "text-bg-success"
+    //                 : "text-bg-danger"}">
+    //                     ${inventoryDataSet[index].qty > inventoryDataSet[index].reorderPoint
+    //                 ? "In Stock"
+    //                 : "Low Stock"}
+    //                     </span>
+    //                 </td>
+    //                 <td class="text-center">
+    //                     <div class="btn-group">
+    //                     <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    //                         <i class="fa-solid fa-gear fa-lg"></i>
+    //                     </button>
+    //                     <ul class="dropdown-menu">
+    //                         <li><a class="dropdown-item" href="#">Update</a></li>
+    //                         <li><a class="dropdown-item" href="#">Delete</a></li>
+    //                     </ul>
+    //                     </div>
+    //                 </td>
+    //                 </tr>`;
+    //         tbody.innerHTML += row;
+    //     }
+    // }
+    // inside DOMContentLoaded
