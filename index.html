@@ -65,7 +65,7 @@
     <div id="main-content">
         <div class="page-content" id="page-content">
             <div id="home" class="page ">
-                <h1>Home</h1>
+                <!-- <h1>Home</h1>
                 <div class="d-inline-flex gap-2">
                     <div class="bg-primary w-25 ">ABC</div>
                     <div class="bg-success w-25">DEF</div>
@@ -75,8 +75,22 @@
 
                 <div class="bg-success w-25">DEF</div>
                 <div class="bg-primary w-25 ">ABC</div>
-                <div class="bg-success w-25">DEF</div>
+                <div class="bg-success w-25">DEF</div> -->
+                <div class="card">
+                    <div class="card-header shadow">
+                        <h1>Remove Local Storage Data</h1>
+
+                    </div>
+
+                    <div class="card-body">
+                        <button type="button" id="cleardb" class="btn btn-danger btn-lg">Clear Data</button>
+
+                    </div>
+
+                </div>
             </div>
+
+
 
         </div>
         <div id="bill" class="page" style="display: none;">
@@ -296,6 +310,9 @@
                 location.reload();
             }, 2000)
         }
+        document.getElementById("cleardb").addEventListener('click',()=>{
+            localStorage.clear();
+        })
     </script>
 
     <script src="main.js"></script>
