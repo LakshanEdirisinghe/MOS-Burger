@@ -65,17 +65,6 @@
     <div id="main-content">
         <div class="page-content" id="page-content">
             <div id="home" class="page ">
-                <!-- <h1>Home</h1>
-                <div class="d-inline-flex gap-2">
-                    <div class="bg-primary w-25 ">ABC</div>
-                    <div class="bg-success w-25">DEF</div>
-                    <div class="bg-primary w-25 ">ABC</div>
-                </div>
-                <div class="d-inline-flex gap-2"></div>
-
-                <div class="bg-success w-25">DEF</div>
-                <div class="bg-primary w-25 ">ABC</div>
-                <div class="bg-success w-25">DEF</div> -->
                 <div class="card">
                     <div class="card-header shadow">
                         <h1>Remove Local Storage Data</h1>
@@ -100,12 +89,181 @@
             <h1>orders</h1>
         </div>
         <div id="customers" class="page" style="display: none;">
-            <h1>customers</h1>
-        </div>
-        <div id="inventory" class="page active ms-3 me-3" style="display: none;">
 
-            <!-- head -->
             <div class="card">
+    <!-- head -->
+    <div class="card-header">
+        <div class="row justify-content-center">
+
+            <!-- mobile search bar -->
+            <div class="col-12 d-flex d-lg-none d-block gap-2">
+                <div class="input-group input-group-sm mb-3">
+                    <input id="customerSearchBox-m" type="search" class="form-control border-3 text-center"
+                        placeholder="Type Name Or ID" aria-label="Customer Search Mobile"
+                        style="border-color: var(--light-team-brown); font-size: 1rem;">
+                </div>
+            </div>
+
+            <!-- desktop search bar -->
+            <div class="col-12 d-none d-lg-flex gap-3">
+                <div class="input-group input-group-lg mb-3">
+                    <input type="text" id="customerSearchBox"
+                        style="height: 51px; border-color: var(--light-team-brown);"
+                        class="form-control border-3 fs-3 text-center"
+                        placeholder="Search By Customer Name Or ID" aria-label="Customer Search Desktop">
+                </div>
+            </div>
+        </div>
+
+        <!-- add new customer btn and table title -->
+        <!-- desktop -->
+        <div class="row mt-5 ">
+            <div class="col-3 d-lg-block d-none">
+                <button type="button" class="btn border-0 text-light fw-bold btn-lg"
+                    style="background-color:var(--dark-team-brown);" data-bs-toggle="modal"
+                    data-bs-target="#customerModal">
+                    <div class="row align-items-center">
+                        <div class="col-8">Add New <br>Customer</div>
+                        <div class="col-4"><i class="fa-solid fa-circle-plus fa-2xl"></i></div>
+                    </div>
+                </button>
+            </div>
+            <div class="col-6 d-lg-block d-none">
+                <h1 class="text-uppercase text-center">Customer List</h1>
+            </div>
+        </div>
+
+        <!-- mobile -->
+        <div class="d-lg-none d-block">
+            <h2 class="text-uppercase mb-3">Customer List</h2>
+            <button class="btn btn-primary btn border-0 text-light fs-4 fw-bold" type="button"
+                style="background-color:var(--dark-team-brown);" data-bs-toggle="modal"
+                data-bs-target="#customerModal">Add New<i class="fa-solid fa-circle-plus fa-lg ps-2"></i></button>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="card-body mt-2">
+        <!-- customer update modal -->
+        <div class="modal fade" id="customerUpdateModal" tabindex="-1" aria-labelledby="customerUpdateModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customerUpdateModalLabel">Update Customer <span id="customerId"></span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="customerUpdateForm" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="customerCode" class="form-label">Customer ID</label>
+                                <input type="text" class="form-control" id="customerCode" placeholder="C1008" readonly required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="customerName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="customerName" placeholder="John Doe" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="customerEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="customerEmail" placeholder="john@example.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="customerPhone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="customerPhone" placeholder="0771234567">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="customerAddress" class="form-label">Address</label>
+                                <textarea class="form-control" id="customerAddress" rows="2"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button style="background-color:var(--dark-team-brown);" type="submit"
+                                    id="btnCustomerUpdate" class="btn border-0 btn-primary">Update Customer</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- customer insert modal -->
+        <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customerModalLabel">Add New Customer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="customerForm" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="customerCode" class="form-label">Customer ID</label>
+                                <input type="text" class="form-control" id="customerCode" placeholder="C1008" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="customerName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="customerName" placeholder="John Doe" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="customerEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="customerEmail" placeholder="john@example.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="customerPhone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="customerPhone" placeholder="0771234567">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="customerAddress" class="form-label">Address</label>
+                                <textarea class="form-control" id="customerAddress" rows="2"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button style="background-color:var(--dark-team-brown);" type="submit"
+                                    id="btnCustomerSubmit" class="btn border-0 btn-primary">Add Customer</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- customer table -->
+        <div class="table-responsive">
+            <table id="customerTable" class="table table-hover table-bordered align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Customer ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTableBody">
+                    <tr>
+                        <td colspan="6" class="fw-bold display-3 text-center text-light">No Data!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+        <div id="inventory" class="page active ms-1 me-1 " style="display: none;">
+
+
+            <div class="card">
+                <!-- head -->
 
                 <div class="card-header">
                     <div class="row justify-content-center">
@@ -120,12 +278,12 @@
                                     style="border-color: var(--light-team-brown); font-size: 1rem;">
 
                             </div>
-                            <div>
+                            <!-- <div>
                                 <button type="button" class="btn  btn-md"
                                     style="background-color:var(--light-team-brown);"><i
                                         class="fa-sharp fa-solid fa-magnifying-glass fa-lg "
                                         style="color: #000000;"></i></button>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- desktop search bar-->
                         <div class="col-12 d-none d-lg-flex gap-3">
@@ -141,10 +299,10 @@
                             </div>
 
                             <div>
-                                <button type="button" class="btn btn-lg border-0"
+                                <!-- <button type="button" class="btn btn-lg border-0"
                                     style="height: 51px; width: 100px; background-color:var(--light-team-brown);">
                                     <i class="fa-sharp fa-solid fa-magnifying-glass fa-xl" style="color: #000000;"></i>
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -178,184 +336,201 @@
 
                 </div>
 
-            </div>
+                <!-- body -->
 
-            <!-- data update Form-->
+                <div class="card-body mt-2">
+                    <!-- data update Form-->
 
 
-            <div class="modal fade" id="inventoryUpdateModal" tabindex="-1" aria-labelledby="inventoryUpdateModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title " id="inventoryUpdateModalLabel">Update Inventory Items</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="inventoryUpdateForm" class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="itemCode" class="form-label">Item Code</label>
-                                    <input type="text" class="form-control" id="itemCode" placeholder="B1008" readonly
-                                        required>
+                    <div class="modal fade" id="inventoryUpdateModal" tabindex="-1"
+                        aria-labelledby="inventoryUpdateModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title " id="inventoryUpdateModalLabel">Update Inventory Items <span
+                                            id="itemId" class=""></span></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="inventoryUpdateForm" class="row g-3">
+                                        <div class="col-md-4">
+                                            <label for="itemCode" class="form-label">Item Code</label>
+                                            <input type="text" class="form-control" id="itemCode" placeholder="B1008"
+                                                readonly required>
 
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="itemName" class="form-label">Item Name</label>
+                                            <input type="text" class="form-control" id="itemName"
+                                                placeholder="Bacon Burger" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="category" class="form-label">Category</label>
+                                            <input type="text" class="form-control" id="category" placeholder="Burger"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="supplier" class="form-label">Supplier</label>
+                                            <input type="text" class="form-control" id="supplier"
+                                                placeholder="MOS Kitchen" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="qty" class="form-label">Quantity</label>
+                                            <input type="number" class="form-control" id="qty" placeholder="15"
+                                                required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="reorderPoint" class="form-label">Reorder
+                                                Point</label>
+                                            <input type="number" class="form-control" id="reorderPoint" placeholder="6"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="price" class="form-label">Unit
+                                                Price</label>
+                                            <input type="number" class="form-control" id="price" placeholder="650"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="discount" class="form-label">Discount
+                                                (%)</label>
+                                            <input type="number" step="0.01" class="form-control" id="discount"
+                                                placeholder="15" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Total</label>
+                                            <input type="text" class="form-control" id="totalAmount" readonly>
+                                        </div>
+                                        <div class="col-12">
+                                            <button style="background-color:var(--dark-team-brown);" type="submit"
+                                                id="btnUpdate" class="btn border-0 btn-primary">Update Item</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="itemName" class="form-label">Item Name</label>
-                                    <input type="text" class="form-control" id="itemName" placeholder="Bacon Burger"
-                                        required>
+                                <div class="modal-footer">
+                                    <div class="alert alert-secondary text-uppercase fw-bold" role="alert">
+                                        If you need to update item code, delete this row and add again it as a new item
+                                    </div>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="category" class="form-label">Category</label>
-                                    <input type="text" class="form-control" id="category" placeholder="Burger" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="supplier" class="form-label">Supplier</label>
-                                    <input type="text" class="form-control" id="supplier" placeholder="MOS Kitchen"
-                                        required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="qty" class="form-label">Quantity</label>
-                                    <input type="number" class="form-control" id="qty" placeholder="15" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="reorderPoint" class="form-label">Reorder
-                                        Point</label>
-                                    <input type="number" class="form-control" id="reorderPoint" placeholder="6"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="price" class="form-label">Unit
-                                        Price</label>
-                                    <input type="number" class="form-control" id="price" placeholder="650" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="discount" class="form-label">Discount
-                                        (%)</label>
-                                    <input type="number" step="0.01" class="form-control" id="discount" placeholder="15"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Total</label>
-                                    <input type="text" class="form-control" id="totalAmount" readonly>
-                                </div>
-                                <div class="col-12">
-                                    <button style="background-color:var(--dark-team-brown);" type="submit"
-                                        id="btnUpdate" class="btn border-0 btn-primary">Update Item</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="alert alert-secondary text-uppercase fw-bold" role="alert">
-                                If you need to update item code, delete this row and add again it as a new item 
                             </div>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <!-- data insert Form-->
 
-            <!-- data insert Form-->
-
-            <div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="inventoryModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="inventoryModalLabel">Add New Inventory
-                                Items</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="inventoryForm" class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="itemCode" class="form-label">Item Code</label>
-                                    <input type="text" class="form-control" id="itemCode" placeholder="B1008" required>
+                    <div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="inventoryModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="inventoryModalLabel">Add New Inventory
+                                        Items</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="itemName" class="form-label">Item Name</label>
-                                    <input type="text" class="form-control" id="itemName" placeholder="Bacon Burger"
-                                        required>
+                                <div class="modal-body">
+                                    <form id="inventoryForm" class="row g-3">
+                                        <div class="col-md-4">
+                                            <label for="itemCode" class="form-label">Item Code</label>
+                                            <input type="text" class="form-control" id="itemCode" placeholder="B1008"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="itemName" class="form-label">Item Name</label>
+                                            <input type="text" class="form-control" id="itemName"
+                                                placeholder="Bacon Burger" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="category" class="form-label">Category</label>
+                                            <input type="text" class="form-control" id="category" placeholder="Burger"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="supplier" class="form-label">Supplier</label>
+                                            <input type="text" class="form-control" id="supplier"
+                                                placeholder="MOS Kitchen" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="qty" class="form-label">Quantity</label>
+                                            <input type="number" class="form-control" id="qty" placeholder="15"
+                                                required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="reorderPoint" class="form-label">Reorder
+                                                Point</label>
+                                            <input type="number" class="form-control" id="reorderPoint" placeholder="6"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="price" class="form-label">Unit
+                                                Price</label>
+                                            <input type="number" class="form-control" id="price" placeholder="650"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="discount" class="form-label">Discount
+                                                (%)</label>
+                                            <input type="number" step="0.01" class="form-control" id="discount"
+                                                placeholder="15" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Total</label>
+                                            <input type="text" class="form-control" id="totalAmount" readonly>
+                                        </div>
+                                        <div class="col-12">
+                                            <button style="background-color:var(--dark-team-brown);" type="submit"
+                                                id="btnSubmit" class="btn border-0 btn-primary">Add
+                                                Item</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="category" class="form-label">Category</label>
-                                    <input type="text" class="form-control" id="category" placeholder="Burger" required>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="supplier" class="form-label">Supplier</label>
-                                    <input type="text" class="form-control" id="supplier" placeholder="MOS Kitchen"
-                                        required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="qty" class="form-label">Quantity</label>
-                                    <input type="number" class="form-control" id="qty" placeholder="15" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="reorderPoint" class="form-label">Reorder
-                                        Point</label>
-                                    <input type="number" class="form-control" id="reorderPoint" placeholder="6"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="price" class="form-label">Unit
-                                        Price</label>
-                                    <input type="number" class="form-control" id="price" placeholder="650" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="discount" class="form-label">Discount
-                                        (%)</label>
-                                    <input type="number" step="0.01" class="form-control" id="discount" placeholder="15"
-                                        required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Total</label>
-                                    <input type="text" class="form-control" id="totalAmount" readonly>
-                                </div>
-                                <div class="col-12">
-                                    <button style="background-color:var(--dark-team-brown);" type="submit"
-                                        id="btnSubmit" class="btn border-0 btn-primary">Add
-                                        Item</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- table-->
+                    <div class="table-responsive">
+                        <table id="inventoryTable" class="table table-hover table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Item Code</th>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Suppler</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Reorder Point</th>
+                                    <th scope="col">Discount</th>
+                                    <th scope="col" class="text-start">Unit Price
+                                        (LKR)</th>
+                                    <th scope="col" class="text-start">Total Price
+                                        (LKR)</th>
+                                    <th scope="col" class="text-start">On Hand
+                                        Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr>
+                                    <td colspan="11" class="fw-bold display-3 text-center text-light">No
+                                        Data !</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
                 </div>
-            </div>
-
-            <!-- table-->
-            <div class="table-responsive">
-                <table id="inventoryTable" class="table table-hover table-bordered align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">Item Code</th>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Suppler</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Reorder Point</th>
-                            <th scope="col">Discount</th>
-                            <th scope="col" class="text-start">Unit Price
-                                (LKR)</th>
-                            <th scope="col" class="text-start">Total Price
-                                (LKR)</th>
-                            <th scope="col" class="text-start">On Hand
-                                Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <tr>
-                            <td colspan="11" class="fw-bold display-3 text-center text-light">No
-                                Data !</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
 
             </div>
+
+
+
 
         </div>
 
@@ -388,7 +563,8 @@
         })
     </script>
 
-    <script src="main.js"></script>
+    <script src="inventory.js"></script>
+    <script src="customer.js"></script>
 </body>
 
 </html>

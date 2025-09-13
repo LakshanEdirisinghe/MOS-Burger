@@ -76,14 +76,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     </span>
                 </td>
                 <td class="text-center">
-                    <div class="btn-group">
-                        <button class="btn btn-sm dropdown-toggle" 
+                    <div class="btn-group dropstart">
+                        <button class="btn btn-sm focus-ring focus-ring-warning py-1 px-2  border-0 dropdown-toggle" 
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-gear fa-lg"></i>
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#" class="dropdown-item btn-update" 
+                                <a href="#" class="dropdown-item text-primary btn-update" 
                                    prKey="${item.itemCode}" 
                                    data-bs-toggle="modal" 
                                    data-bs-target="#inventoryUpdateModal">
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item btn-delete" 
+                                <a href="#" class="dropdown-item text-danger btn-delete" 
                                    prKey="${item.itemCode}">
                                    <i class="bi bi-ban"></i> Delete
                                 </a>
@@ -165,48 +165,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Update item ---
     function radyToUpdateItem(itemCode) {
-        if (!confirm("Do you want to update this data row ?")) return;
+        let isOk = confirm("Do you want to update this data row ?");
+        if (isOk) {
+            let data = JSON.parse(localStorage.getItem("inventory")) || [];
+            const item = data.find(item => item.itemCode === itemCode);
+            const index = data.findIndex(item => item.itemCode === itemCode);
 
-        let data = JSON.parse(localStorage.getItem("inventory")) || [];
-        const item = data.find(item => item.itemCode === itemCode);
-        const index = data.findIndex(item => item.itemCode === itemCode);
+            if (item) {
+                // Fill form fields
+                document.getElementById("itemCode").value = item.itemCode;
+                document.getElementById("itemName").value = item.itemName;
+                document.getElementById("category").value = item.category;
+                document.getElementById("supplier").value = item.supplier;
+                document.getElementById("qty").value = item.qty;
+                document.getElementById("reorderPoint").value = item.reorderPoint;
+                document.getElementById("price").value = item.price;
+                document.getElementById("discount").value = item.discount * 100;
+                document.getElementById("totalAmount").value = (item.qty * item.price) + " LKR";
 
-        if (item) {
-            // Fill form fields
-            document.getElementById("itemCode").value = item.itemCode;
-            document.getElementById("itemName").value = item.itemName;
-            document.getElementById("category").value = item.category;
-            document.getElementById("supplier").value = item.supplier;
-            document.getElementById("qty").value = item.qty;
-            document.getElementById("reorderPoint").value = item.reorderPoint;
-            document.getElementById("price").value = item.price;
-            document.getElementById("discount").value = item.discount * 100;
-            document.getElementById("totalAmount").value = (item.qty * item.price) + " LKR";
+                updateForm.onsubmit = function (e) {
+                    e.preventDefault();
+                    const confermText = prompt("Type 'Update' word inside this box !");
+                    if (confermText?.toLowerCase() === "update") {
+                        data[index].itemName = document.getElementById("itemName").value.trim();
+                        data[index].category = document.getElementById("category").value.trim();
+                        data[index].supplier = document.getElementById("supplier").value.trim();
+                        data[index].qty = parseInt(document.getElementById("qty").value) || 0;
+                        data[index].reorderPoint = parseInt(document.getElementById("reorderPoint").value) || 0;
+                        data[index].price = parseFloat(document.getElementById("price").value) || 0;
+                        data[index].discount = (parseFloat(document.getElementById("discount").value) || 0) / 100;
 
-            updateForm.onsubmit = function (e) {
-                e.preventDefault();
-                const confermText = prompt("Type 'Update' word inside this box !");
-                if (confermText?.toLowerCase() === "update") {
-                    data[index].itemName = document.getElementById("itemName").value.trim();
-                    data[index].category = document.getElementById("category").value.trim();
-                    data[index].supplier = document.getElementById("supplier").value.trim();
-                    data[index].qty = parseInt(document.getElementById("qty").value) || 0;
-                    data[index].reorderPoint = parseInt(document.getElementById("reorderPoint").value) || 0;
-                    data[index].price = parseFloat(document.getElementById("price").value) || 0;
-                    data[index].discount = (parseFloat(document.getElementById("discount").value) || 0) / 100;
+                        localStorage.setItem("inventory", JSON.stringify(data));
+                        // alert("Item updated successfully ✅");
+                        location.reload();
+                    } else {
+                        alert("Updating process is canceled");
+                    }
 
-                    localStorage.setItem("inventory", JSON.stringify(data));
-                    // alert("Item updated successfully ✅");
-                    location.reload();
-                }else{
-                    alert("Updating process is canceled");
-                }
-
-            };
+                };
 
 
+
+            }
 
         }
+
     }
 
     // --- Delete item ---
