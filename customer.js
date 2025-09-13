@@ -62,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${cust.customerCode}</td>
                 <td>${cust.customerName}</td>
                 <td>${cust.customerEmail}</td>
-                <td>${cust.customerPhone}</td>
+                <td class="text-end">${cust.customerPhone}</td>
+                <td class="text-end">${cust.orderCount}</td>
                 <td class="text-center">
                     <div class="btn-group dropstart">
                         <button class="btn btn-sm border-0 dropdown-toggle" 
@@ -101,7 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (
                 cust.customerName.toLowerCase().includes(query) ||
                 cust.customerCode.toLowerCase().includes(query) ||
-                cust.customerEmail.toLowerCase().includes(query)
+                cust.customerEmail.toLowerCase().includes(query)||
+                cust.customerPhone.toLowerCase().includes(query)
             ) {
                 filtered.push(cust);
             }
@@ -127,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
             customerName: newName,
             customerEmail: newEmail,
             customerPhone: newPhone,
+            orderCount:0,
 
         };
 
