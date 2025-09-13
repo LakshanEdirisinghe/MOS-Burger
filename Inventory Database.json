@@ -1,0 +1,462 @@
+[
+  {
+    "itemCode": "B1001",
+    "itemName": "Classic Burger (Large)",
+    "price": 750,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "MOS Kitchen",
+    "qty": 25,
+    "reorderPoint": 10
+  },
+  {
+    "itemCode": "B1002",
+    "itemName": "Classic Burger (Regular)",
+    "price": 1500,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "MOS Kitchen",
+    "qty": 40,
+    "reorderPoint": 15
+  },
+  {
+    "itemCode": "B1003",
+    "itemName": "Turkey Burger",
+    "price": 1600,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "Lanka Meats",
+    "qty": 12,
+    "reorderPoint": 5
+  },
+  {
+    "itemCode": "B1004",
+    "itemName": "Chicken Burger (Large)",
+    "price": 1400,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "MOS Kitchen",
+    "qty": 18,
+    "reorderPoint": 8
+  },
+  {
+    "itemCode": "B1005",
+    "itemName": "Chicken Burger (Regular)",
+    "price": 800,
+    "discount": 0.2,
+    "category": "Burger",
+    "supplier": "MOS Kitchen",
+    "qty": 20,
+    "reorderPoint": 10
+  },
+  {
+    "itemCode": "B1006",
+    "itemName": "Cheese Burger (Large)",
+    "price": 1000,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "Cheezy Supply",
+    "qty": 30,
+    "reorderPoint": 12
+  },
+  {
+    "itemCode": "B1007",
+    "itemName": "Cheese Burger (Regular)",
+    "price": 600,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "Cheezy Supply",
+    "qty": 28,
+    "reorderPoint": 10
+  },
+  {
+    "itemCode": "B1008",
+    "itemName": "Bacon Burger",
+    "price": 650,
+    "discount": 0.15,
+    "category": "Burger",
+    "supplier": "MOS Kitchen",
+    "qty": 15,
+    "reorderPoint": 6
+  },
+  {
+    "itemCode": "B1009",
+    "itemName": "Shawarma Burger",
+    "price": 800,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "Shawarma House",
+    "qty": 22,
+    "reorderPoint": 8
+  },
+  {
+    "itemCode": "B1010",
+    "itemName": "Olive Burger",
+    "price": 1800,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "Olive Deli",
+    "qty": 10,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1012",
+    "itemName": "Double-Cheese Burger",
+    "price": 1250,
+    "discount": 0.2,
+    "category": "Burger",
+    "supplier": "Cheezy Supply",
+    "qty": 16,
+    "reorderPoint": 6
+  },
+  {
+    "itemCode": "B1013",
+    "itemName": "Crispy Chicken Burger (Regular)",
+    "price": 1200,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "MOS Kitchen",
+    "qty": 14,
+    "reorderPoint": 6
+  },
+  {
+    "itemCode": "B1014",
+    "itemName": "Crispy Chicken Burger (Large)",
+    "price": 1600,
+    "discount": 0.1,
+    "category": "Burger",
+    "supplier": "MOS Kitchen",
+    "qty": 12,
+    "reorderPoint": 5
+  },
+  {
+    "itemCode": "B1015",
+    "itemName": "Paneer Burger",
+    "price": 900,
+    "discount": 0,
+    "category": "Burger",
+    "supplier": "Veggie Foods",
+    "qty": 9,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1016",
+    "itemName": "Crispy Chicken Submarine (Large)",
+    "price": 2000,
+    "discount": 0,
+    "category": "Submarine",
+    "supplier": "MOS Kitchen",
+    "qty": 15,
+    "reorderPoint": 7
+  },
+  {
+    "itemCode": "B1017",
+    "itemName": "Crispy Chicken Submarine (Regular)",
+    "price": 1500,
+    "discount": 0,
+    "category": "Submarine",
+    "supplier": "MOS Kitchen",
+    "qty": 18,
+    "reorderPoint": 8
+  },
+  {
+    "itemCode": "B1018",
+    "itemName": "Chicken Submarine (Large)",
+    "price": 1500,
+    "discount": 0.03,
+    "category": "Submarine",
+    "supplier": "Lanka Meats",
+    "qty": 20,
+    "reorderPoint": 8
+  },
+  {
+    "itemCode": "B1019",
+    "itemName": "Chicken Submarine (Regular)",
+    "price": 1400,
+    "discount": 0,
+    "category": "Submarine",
+    "supplier": "Lanka Meats",
+    "qty": 22,
+    "reorderPoint": 9
+  },
+  {
+    "itemCode": "B1020",
+    "itemName": "Grinder Submarine",
+    "price": 2300,
+    "discount": 0,
+    "category": "Submarine",
+    "supplier": "MOS Kitchen",
+    "qty": 12,
+    "reorderPoint": 5
+  },
+  {
+    "itemCode": "B1021",
+    "itemName": "Cheese Submarine",
+    "price": 2200,
+    "discount": 0,
+    "category": "Submarine",
+    "supplier": "Cheezy Supply",
+    "qty": 18,
+    "reorderPoint": 7
+  },
+  {
+    "itemCode": "B1022",
+    "itemName": "Double Cheese n Chicken Submarine",
+    "price": 1900,
+    "discount": 0.16,
+    "category": "Submarine",
+    "supplier": "Cheezy Supply",
+    "qty": 14,
+    "reorderPoint": 6
+  },
+  {
+    "itemCode": "B1023",
+    "itemName": "Special Horgie Submarine",
+    "price": 2800,
+    "discount": 0,
+    "category": "Submarine",
+    "supplier": "MOS Kitchen",
+    "qty": 8,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1024",
+    "itemName": "MOS Special Submarine",
+    "price": 3000,
+    "discount": 0,
+    "category": "Submarine",
+    "supplier": "MOS Kitchen",
+    "qty": 10,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1025",
+    "itemName": "Steak Fries (Large)",
+    "price": 1200,
+    "discount": 0,
+    "category": "Fries",
+    "supplier": "FryHub",
+    "qty": 25,
+    "reorderPoint": 10
+  },
+  {
+    "itemCode": "B1026",
+    "itemName": "Steak Fries (Medium)",
+    "price": 600,
+    "discount": 0,
+    "category": "Fries",
+    "supplier": "FryHub",
+    "qty": 30,
+    "reorderPoint": 12
+  },
+  {
+    "itemCode": "B1027",
+    "itemName": "French Fries (Large)",
+    "price": 800,
+    "discount": 0,
+    "category": "Fries",
+    "supplier": "FryHub",
+    "qty": 28,
+    "reorderPoint": 10
+  },
+  {
+    "itemCode": "B1028",
+    "itemName": "French Fries (Medium)",
+    "price": 650,
+    "discount": 0,
+    "category": "Fries",
+    "supplier": "FryHub",
+    "qty": 35,
+    "reorderPoint": 12
+  },
+  {
+    "itemCode": "B1029",
+    "itemName": "French Fries (Small)",
+    "price": 450,
+    "discount": 0,
+    "category": "Fries",
+    "supplier": "FryHub",
+    "qty": 40,
+    "reorderPoint": 15
+  },
+  {
+    "itemCode": "B1030",
+    "itemName": "Sweet Potato Fries (Large)",
+    "price": 600,
+    "discount": 0,
+    "category": "Fries",
+    "supplier": "FryHub",
+    "qty": 18,
+    "reorderPoint": 7
+  },
+  {
+    "itemCode": "B1031",
+    "itemName": "Chicken n Cheese Pasta",
+    "price": 1600,
+    "discount": 0.15,
+    "category": "Pasta",
+    "supplier": "PastaHouse",
+    "qty": 12,
+    "reorderPoint": 5
+  },
+  {
+    "itemCode": "B1032",
+    "itemName": "Chicken Penne Pasta",
+    "price": 1700,
+    "discount": 0,
+    "category": "Pasta",
+    "supplier": "PastaHouse",
+    "qty": 10,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1033",
+    "itemName": "Ground Turkey Pasta Bake",
+    "price": 2900,
+    "discount": 0.1,
+    "category": "Pasta",
+    "supplier": "PastaHouse",
+    "qty": 8,
+    "reorderPoint": 3
+  },
+  {
+    "itemCode": "B1034",
+    "itemName": "Creamy Shrimp Pasta",
+    "price": 2000,
+    "discount": 0,
+    "category": "Pasta",
+    "supplier": "PastaHouse",
+    "qty": 10,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1035",
+    "itemName": "Lemon Butter Pasta",
+    "price": 1950,
+    "discount": 0,
+    "category": "Pasta",
+    "supplier": "PastaHouse",
+    "qty": 11,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1036",
+    "itemName": "Tagliatelle Pasta",
+    "price": 2400,
+    "discount": 0.01,
+    "category": "Pasta",
+    "supplier": "PastaHouse",
+    "qty": 9,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1037",
+    "itemName": "Baked Ravioli",
+    "price": 2000,
+    "discount": 0.01,
+    "category": "Pasta",
+    "supplier": "PastaHouse",
+    "qty": 7,
+    "reorderPoint": 3
+  },
+  {
+    "itemCode": "B1038",
+    "itemName": "Fried Chicken (Small)",
+    "price": 1200,
+    "discount": 0,
+    "category": "Chicken",
+    "supplier": "ChickKing",
+    "qty": 20,
+    "reorderPoint": 8
+  },
+  {
+    "itemCode": "B1039",
+    "itemName": "Fried Chicken (Regular)",
+    "price": 2300,
+    "discount": 0.1,
+    "category": "Chicken",
+    "supplier": "ChickKing",
+    "qty": 15,
+    "reorderPoint": 6
+  },
+  {
+    "itemCode": "B1040",
+    "itemName": "Fried Chicken (Large)",
+    "price": 3100,
+    "discount": 0.05,
+    "category": "Chicken",
+    "supplier": "ChickKing",
+    "qty": 10,
+    "reorderPoint": 4
+  },
+  {
+    "itemCode": "B1041",
+    "itemName": "Hot Wings (Large)",
+    "price": 2400,
+    "discount": 0,
+    "category": "Chicken",
+    "supplier": "ChickKing",
+    "qty": 18,
+    "reorderPoint": 7
+  },
+  {
+    "itemCode": "B1042",
+    "itemName": "Devilled Chicken",
+    "price": 900,
+    "discount": 0,
+    "category": "Chicken",
+    "supplier": "ChickKing",
+    "qty": 22,
+    "reorderPoint": 9
+  },
+  {
+    "itemCode": "B1043",
+    "itemName": "BBQ Chicken (Regular)",
+    "price": 2100,
+    "discount": 0,
+    "category": "Chicken",
+    "supplier": "ChickKing",
+    "qty": 14,
+    "reorderPoint": 6
+  },
+  {
+    "itemCode": "B1044",
+    "itemName": "Pepsi (330ml)",
+    "price": 990,
+    "discount": 0.05,
+    "category": "Drinks",
+    "supplier": "Ceylon Beverages",
+    "qty": 50,
+    "reorderPoint": 20
+  },
+  {
+    "itemCode": "B1045",
+    "itemName": "CocaCola (330ml)",
+    "price": 1230,
+    "discount": 0,
+    "category": "Drinks",
+    "supplier": "CocaCola Beverages Lanka",
+    "qty": 60,
+    "reorderPoint": 25
+  },
+  {
+    "itemCode": "B1046",
+    "itemName": "Sprite (330ml)",
+    "price": 1500,
+    "discount": 0.03,
+    "category": "Drinks",
+    "supplier": "CocaCola Beverages Lanka",
+    "qty": 55,
+    "reorderPoint": 22
+  },
+  {
+    "itemCode": "B1047",
+    "itemName": "Mirinda (330ml)",
+    "price": 850,
+    "discount": 0.07,
+    "category": "Drinks",
+    "supplier": "Ceylon Beverages",
+    "qty": 40,
+    "reorderPoint": 50
+  }
+]
