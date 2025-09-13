@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Customer db Connection Error");
     }
 
-    // Layout elements
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('main-content');
-    const topbar = document.getElementById('topbar');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    // // Layout elements
+    // const sidebar = document.getElementById('sidebar');
+    // const mainContent = document.getElementById('main-content');
+    // const topbar = document.getElementById('topbar');
+    // const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
-    // Sidebar/page navigation
-    const menuItems = document.querySelectorAll('.sidebar-item');
-    const pages = document.querySelectorAll('.page');
+    // // Sidebar/page navigation
+    // const menuItems = document.querySelectorAll('.sidebar-item');
+    // const pages = document.querySelectorAll('.page');
 
     // Table + search elements
     const table = document.getElementById("customerTable");
@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${cust.customerName}</td>
                 <td>${cust.customerEmail}</td>
                 <td>${cust.customerPhone}</td>
-                <td>${cust.customerAddress}</td>
                 <td class="text-center">
                     <div class="btn-group dropstart">
                         <button class="btn btn-sm border-0 dropdown-toggle" 
@@ -121,14 +120,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const newName = document.getElementById("customerName").value.trim();
         const newEmail = document.getElementById("customerEmail").value.trim();
         const newPhone = document.getElementById("customerPhone").value.trim();
-        const newAddress = document.getElementById("customerAddress").value.trim();
+
 
         let newCustomer = {
             customerCode: newCode,
             customerName: newName,
             customerEmail: newEmail,
             customerPhone: newPhone,
-            customerAddress: newAddress
+
         };
 
         if (confirm("Are you Sure?")) {
@@ -152,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById("customerName").value = cust.customerName;
                 document.getElementById("customerEmail").value = cust.customerEmail;
                 document.getElementById("customerPhone").value = cust.customerPhone;
-                document.getElementById("customerAddress").value = cust.customerAddress;
+
 
                 updateForm.onsubmit = function (e) {
                     e.preventDefault();
@@ -161,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         data[index].customerName = document.getElementById("customerName").value.trim();
                         data[index].customerEmail = document.getElementById("customerEmail").value.trim();
                         data[index].customerPhone = document.getElementById("customerPhone").value.trim();
-                        data[index].customerAddress = document.getElementById("customerAddress").value.trim();
+
 
                         localStorage.setItem("customers", JSON.stringify(data));
                         location.reload();
@@ -216,44 +215,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Sidebar toggle (mobile)
-    mobileMenuBtn.addEventListener("click", function () {
-        sidebar.classList.toggle("show");
-    });
+    // mobileMenuBtn.addEventListener("click", function () {
+    //     sidebar.classList.toggle("show");
+    // });
 
-    // Close sidebar on outside click
-    document.addEventListener('click', function (event) {
-        if (window.innerWidth < 992) {
-            const isClickInsideSidebar = sidebar.contains(event.target);
-            const isClickOnMobileMenuBtn = mobileMenuBtn.contains(event.target);
-            if (!isClickInsideSidebar && !isClickOnMobileMenuBtn) {
-                sidebar.classList.remove('show');
-            }
-        }
-    });
+    // // Close sidebar on outside click
+    // document.addEventListener('click', function (event) {
+    //     if (window.innerWidth < 992) {
+    //         const isClickInsideSidebar = sidebar.contains(event.target);
+    //         const isClickOnMobileMenuBtn = mobileMenuBtn.contains(event.target);
+    //         if (!isClickInsideSidebar && !isClickOnMobileMenuBtn) {
+    //             sidebar.classList.remove('show');
+    //         }
+    //     }
+    // });
 
-    // Menu navigation
-    let lastPage = "customers"; // default
-    pages.forEach(page => {
-        page.style.display = (page.id === lastPage) ? "block" : "none";
-    });
-    menuItems.forEach(item => {
-        item.classList.toggle("active", item.getAttribute("data-page") === lastPage);
-        item.addEventListener('click', function (e) {
-            e.preventDefault();
-            menuItems.forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
-            const pageId = this.getAttribute('data-page');
-            pages.forEach(page => {
-                page.style.display = page.id === pageId ? 'block' : 'none';
-            });
-            if (window.innerWidth < 992) sidebar.classList.remove('show');
-        });
-    });
+    // // Menu navigation
+    // let lastPage = "customers"; // default
+    // pages.forEach(page => {
+    //     page.style.display = (page.id === lastPage) ? "block" : "none";
+    // });
+    // menuItems.forEach(item => {
+    //     item.classList.toggle("active", item.getAttribute("data-page") === lastPage);
+    //     item.addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //         menuItems.forEach(i => i.classList.remove('active'));
+    //         this.classList.add('active');
+    //         const pageId = this.getAttribute('data-page');
+    //         pages.forEach(page => {
+    //             page.style.display = page.id === pageId ? 'block' : 'none';
+    //         });
+    //         if (window.innerWidth < 992) sidebar.classList.remove('show');
+    //     });
+    // });
 
-    // Resize reset
-    window.addEventListener('resize', function () {
-        if (window.innerWidth >= 992) {
-            sidebar.classList.remove('show');
-        }
-    });
+    // // Resize reset
+    // window.addEventListener('resize', function () {
+    //     if (window.innerWidth >= 992) {
+    //         sidebar.classList.remove('show');
+    //     }
+    // });
 });

@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Inventory db Connection Error");
     }
 
-    // Layout elements
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('main-content');
-    const topbar = document.getElementById('topbar');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    // // Layout elements
+    // const sidebar = document.getElementById('sidebar');
+    // const mainContent = document.getElementById('main-content');
+    // const topbar = document.getElementById('topbar');
+    // const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
-    // Sidebar/page navigation
-    const menuItems = document.querySelectorAll('.sidebar-item');
-    const pages = document.querySelectorAll('.page');
+    // // Sidebar/page navigation
+    // const menuItems = document.querySelectorAll('.sidebar-item');
+    // const pages = document.querySelectorAll('.page');
 
     // Table + search elements
     const table = document.getElementById("inventoryTable");
@@ -70,20 +70,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td class="text-end">${(item.price * item.qty).toLocaleString()}</td>
                 <td class="text-center">
                     <span class="badge ${item.qty > item.reorderPoint
-                    ? "text-bg-success"
-                    : "text-bg-danger"}">
+                        ? "text-bg-success"
+                        : "text-bg-danger"}">
                         ${item.qty > item.reorderPoint ? "In Stock" : "Low Stock"}
                     </span>
                 </td>
                 <td class="text-center">
-                    <div class="btn-group dropstart">
-                        <button class="btn btn-sm focus-ring focus-ring-warning py-1 px-2  border-0 dropdown-toggle" 
+                    <div class="btn-group">
+                        <button class="btn btn-sm dropdown-toggle" 
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-gear fa-lg"></i>
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#" class="dropdown-item text-primary btn-update" 
+                                <a href="#" class="dropdown-item btn-update" 
                                    prKey="${item.itemCode}" 
                                    data-bs-toggle="modal" 
                                    data-bs-target="#inventoryUpdateModal">
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item text-danger btn-delete" 
+                                <a href="#" class="dropdown-item btn-delete" 
                                    prKey="${item.itemCode}">
                                    <i class="bi bi-ban"></i> Delete
                                 </a>
@@ -165,51 +165,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Update item ---
     function radyToUpdateItem(itemCode) {
-        let isOk = confirm("Do you want to update this data row ?");
-        if (isOk) {
-            let data = JSON.parse(localStorage.getItem("inventory")) || [];
-            const item = data.find(item => item.itemCode === itemCode);
-            const index = data.findIndex(item => item.itemCode === itemCode);
+        if (!confirm("Do you want to update this data row ?")) return;
 
-            if (item) {
-                // Fill form fields
-                document.getElementById("itemCode").value = item.itemCode;
-                document.getElementById("itemName").value = item.itemName;
-                document.getElementById("category").value = item.category;
-                document.getElementById("supplier").value = item.supplier;
-                document.getElementById("qty").value = item.qty;
-                document.getElementById("reorderPoint").value = item.reorderPoint;
-                document.getElementById("price").value = item.price;
-                document.getElementById("discount").value = item.discount * 100;
-                document.getElementById("totalAmount").value = (item.qty * item.price) + " LKR";
+        let data = JSON.parse(localStorage.getItem("inventory")) || [];
+        const item = data.find(item => item.itemCode === itemCode);
+        const index = data.findIndex(item => item.itemCode === itemCode);
 
-                updateForm.onsubmit = function (e) {
-                    e.preventDefault();
-                    const confermText = prompt("Type 'Update' word inside this box !");
-                    if (confermText?.toLowerCase() === "update") {
-                        data[index].itemName = document.getElementById("itemName").value.trim();
-                        data[index].category = document.getElementById("category").value.trim();
-                        data[index].supplier = document.getElementById("supplier").value.trim();
-                        data[index].qty = parseInt(document.getElementById("qty").value) || 0;
-                        data[index].reorderPoint = parseInt(document.getElementById("reorderPoint").value) || 0;
-                        data[index].price = parseFloat(document.getElementById("price").value) || 0;
-                        data[index].discount = (parseFloat(document.getElementById("discount").value) || 0) / 100;
+        if (item) {
+            // Fill form fields
+            document.getElementById("itemCode").value = item.itemCode;
+            document.getElementById("itemName").value = item.itemName;
+            document.getElementById("category").value = item.category;
+            document.getElementById("supplier").value = item.supplier;
+            document.getElementById("qty").value = item.qty;
+            document.getElementById("reorderPoint").value = item.reorderPoint;
+            document.getElementById("price").value = item.price;
+            document.getElementById("discount").value = item.discount * 100;
+            document.getElementById("totalAmount").value = (item.qty * item.price) + " LKR";
 
-                        localStorage.setItem("inventory", JSON.stringify(data));
-                        // alert("Item updated successfully ✅");
-                        location.reload();
-                    } else {
-                        alert("Updating process is canceled");
-                    }
+            updateForm.onsubmit = function (e) {
+                e.preventDefault();
 
-                };
+                data[index].itemName = document.getElementById("itemName").value.trim();
+                data[index].category = document.getElementById("category").value.trim();
+                data[index].supplier = document.getElementById("supplier").value.trim();
+                data[index].qty = parseInt(document.getElementById("qty").value) || 0;
+                data[index].reorderPoint = parseInt(document.getElementById("reorderPoint").value) || 0;
+                data[index].price = parseFloat(document.getElementById("price").value) || 0;
+                data[index].discount = (parseFloat(document.getElementById("discount").value) || 0) / 100;
 
-
-
-            }
-
+                localStorage.setItem("inventory", JSON.stringify(data));
+                alert("Item updated successfully ✅");
+                location.reload();
+            };
         }
-
     }
 
     // --- Delete item ---
@@ -258,4 +247,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // // Sidebar toggle (mobile)
+    // mobileMenuBtn.addEventListener("click", function () {
+    //     sidebar.classList.toggle("show");
+    // });
+
+    // // Close sidebar on outside click
+    // document.addEventListener('click', function (event) {
+    //     if (window.innerWidth < 992) {
+    //         const isClickInsideSidebar = sidebar.contains(event.target);
+    //         const isClickOnMobileMenuBtn = mobileMenuBtn.contains(event.target);
+    //         if (!isClickInsideSidebar && !isClickOnMobileMenuBtn) {
+    //             sidebar.classList.remove('show');
+    //         }
+    //     }
+    // });
+
+    // // Menu navigation
+    // let lastPage = "inventory"; // default
+    // pages.forEach(page => {
+    //     page.style.display = (page.id === lastPage) ? "block" : "none";
+    // });
+    // menuItems.forEach(item => {
+    //     item.classList.toggle("active", item.getAttribute("data-page") === lastPage);
+    //     item.addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //         menuItems.forEach(i => i.classList.remove('active'));
+    //         this.classList.add('active');
+    //         const pageId = this.getAttribute('data-page');
+    //         pages.forEach(page => {
+    //             page.style.display = page.id === pageId ? 'block' : 'none';
+    //         });
+    //         if (window.innerWidth < 992) sidebar.classList.remove('show');
+    //     });
+    // });
+
+    // // Resize reset
+    // window.addEventListener('resize', function () {
+    //     if (window.innerWidth >= 992) {
+    //         sidebar.classList.remove('show');
+    //     }
+    // });
 });
