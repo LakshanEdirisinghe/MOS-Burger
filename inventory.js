@@ -444,14 +444,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     </span>
                 </td>
                 <td class="text-center">
-                    <div class="btn-group">
+                    <div class="btn-group dropstart">
                         <button class="btn btn-sm dropdown-toggle" 
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-gear fa-lg"></i>
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#" class="dropdown-item btn-update" 
+                                <a href="#" class="dropdown-item text-primary btn-update" 
                                    prKey="${item.itemCode}" 
                                    data-bs-toggle="modal" 
                                    data-bs-target="#inventoryUpdateModal">
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item btn-delete" 
+                                <a href="#" class="dropdown-item text-danger btn-delete" 
                                    prKey="${item.itemCode}">
                                    <i class="bi bi-ban"></i> Delete
                                 </a>
