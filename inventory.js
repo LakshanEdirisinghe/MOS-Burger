@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#" class="dropdown-item btn-update" 
+                                <a id"btnUpdateRow" href="#" class="dropdown-item text-primary btn-update" 
                                    prKey="${item.itemCode}" 
                                    data-bs-toggle="modal" data-bs-target="#inventoryUpdateModal">
                                    <i class="bi bi-arrow-repeat"></i> Update
