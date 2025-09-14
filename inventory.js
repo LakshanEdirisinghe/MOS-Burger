@@ -374,10 +374,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let dbConnectonInventory = false;
 
     if (localStorage.getItem("inventory") != null) {
-        console.log("Inventory db is connected");
+        console.log("✅ Inventory db is connected");
         dbConnectonInventory = true;
     } else {
-        console.log("Inventory db Connection Error");
+        console.log("⚡Inventory db Connection Error");
     }
 
     // Layout elements
@@ -403,10 +403,35 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById("inventoryForm");
     const updateForm = document.getElementById("inventoryUpdateForm");
 
+    const andNewDesktop = document.getElementById("addNewDes");
+    const addNewmobile = document.getElementById("addNewmobile");
+    const inventoryModalInsert = document.getElementById("inventoryModalInsert");
+    const modal = new bootstrap.Modal(inventoryModalInsert);
 
+    
     // =====================================================
     // 2. CORE FUNCTIONS
     // =====================================================
+
+    function addNewItemForm(btnName) {
+        btnName.addEventListener("click", () => {
+            if (!confirm("Do you want to update this data row ?")) {
+                return; // stop here, modal never opens
+            }
+
+            modal.show(); // only open if confirmed
+        });
+
+    }
+
+    addNewItemForm(andNewDesktop);
+    addNewItemForm(addNewmobile);
+
+
+
+
+
+
 
     // --- Render Table Rows ---
     function renderTable(data) {
@@ -451,10 +476,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#" class="dropdown-item text-primary btn-update" 
+                                <a href="#" class="dropdown-item btn-update" 
                                    prKey="${item.itemCode}" 
-                                   data-bs-toggle="modal" 
-                                   data-bs-target="#inventoryUpdateModal">
+                                   data-bs-toggle="modal" data-bs-target="#inventoryUpdateModal">
                                    <i class="bi bi-arrow-repeat"></i> Update
                                 </a>
                             </li>
@@ -523,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function () {
             qty: newqty,
             reorderPoint: newreorderPoint
         };
-
+        
         if (confirm("Are you Sure?")) {
             DataSet.push(newItem);
             localStorage.setItem("inventory", JSON.stringify(DataSet));
@@ -533,7 +557,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Update item ---
     function radyToUpdateItem(itemCode) {
-        if (!confirm("Do you want to update this data row ?")) return;
+        if (!confirm("Do you want to update this data row ?")) {
+
+            return
+        };
 
         let data = JSON.parse(localStorage.getItem("inventory")) || [];
         const item = data.find(item => item.itemCode === itemCode);
@@ -566,7 +593,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     localStorage.setItem("inventory", JSON.stringify(data));
                     // alert("Item updated successfully ✅");
                     location.reload();
-                }else{
+                } else {
                     alert("Updating process is canceled");
                 }
 
