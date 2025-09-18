@@ -4,166 +4,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inventory Search Table</title>
+  <title>Test</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- <script src="https://kit.fontawesome.com/a2d9d5a64c.js" crossorigin="anonymous"></script> -->
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/testStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="m-4">
 
-  <div class="card">
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Item Code</th>
-            <th scope="col">Item Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Supplier</th>
-            <th scope="col">Qty</th>
-            <th scope="col">Reorder Point</th>
-            <th scope="col">Discount</th>
-            <th scope="col" class="text-start">Unit Price (LKR)</th>
-            <th scope="col" class="text-start">Total Price (LKR)</th>
-            <th scope="col" class="text-start">On Hand Status</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+
+
+  <h1 id="open"><i class="bi bi-cart"></i></h1>
+
+
+  <div id="sidebar" class="card ">
+
+    <div class="card-header">
+
+      <div class=" d-flex ">
+
+        <div class="">
+          <button type="button" id="cls" class="btn   border-0"><i class="fa-solid fa-arrow-up-from-bracket fa-rotate-90 fa-xl"></i>
+          </button>
+        </div>
+        <div>
+          <h2 class="ms-4 ">Customer Information</h2>
+        </div>
+
+      </div>
+      <div class="text-end mt-3 mb-3">
+        <button type="button" class="btn  btn-danger">Cancel Order</button>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+        <label for="floatingInput">Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control " id="floatingPassword" placeholder="Password" required>
+        <label for="floatingPassword">Phone Number</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+          style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Notes</label>
+      </div>
+
     </div>
+    <div class="card-body">
+      <div>
+        <h2 class="card-title">Order Details</h2>
+
+        <!-- <div class="d-inline"><h6 class=" bg-black">Order Id</h6></div>
+        <div class="d-inline"><h6 class="bg-danger">#123456</h6></div> -->
+        <div class="d-flex gap-2 mt-4 justify-content-between">
+          <h6>Order Id</h6>
+          <h6>#123456</h6>
+        </div>
+        <div class="d-flex gap-2 mt-2 justify-content-between">
+          <h6>Order Date</h6>
+          <h6>Wednesday, July 30, 2025</h6>
+        </div>
+        <hr>
+      </div>
+
+      <!-- order card section -->
+      <div class="">
+        <p>What is Lorem Ipsum?
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.</p>
+
+        <p>Why do we use it?
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking
+          at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
+          opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
+          packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
+          will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by
+          accident, sometimes on purpose (injected humour and the like).</p>
+
+
+        <p>Where does it come from?
+          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+          literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+          College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
+          and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem
+          Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
+          Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the
+          Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
+          1.10.32.</p>
+      </div>
+
+    </div>
+    <div class="card-footer  bg-light sticky-bottom">
+      <div class="d-flex gap-2 mt-4 justify-content-between">
+        <h6>Total Items</h6>
+        <h6>10</h6>
+      </div>
+      <div class="d-flex gap-2 mt-2 justify-content-between">
+        <h6>Subtotal</h6>
+        <h6>7548.75 LKR</h6>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Discount</label>
+      </div>
+      <div class="d-flex gap-2 mt-2 text-black fw-bold justify-content-between">
+        <h4>Total Price</h6>
+          <h4>7540.75 LKR</h6>
+      </div>
+
+      <div class="mt-3 d-flex gap-2 justify-content-between">
+        <button type="button" style="width: 331px; height: 60px; font-size: 30px; background-color: var(--dark-team-brown);" class="btn border-0 mt-3 btn-success">Place Order</button>
+        <button type="button" style="width: 82px; height: 82px; background-color: var(--dark-team-brown);"class="btn border-0 btn-success"><i class="fa-solid fa-print fa-2xl"></i></button>
+
+
+      </div>
+
+
+    </div>
+
+
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    let inventoryData = [
-      {
-        "itemCode": "B1001",
-        "itemName": "Classic Burger (Large)",
-        "price": 750,
-        "discount": 0,
-        "category": "Burger",
-        "supplier": "MOS Kitchen",
-        "qty": 25,
-        "reorderPoint": 10
-      },
-      {
-        "itemCode": "B1002",
-        "itemName": "Classic Burger (Regular)",
-        "price": 1500,
-        "discount": 0,
-        "category": "Burger",
-        "supplier": "MOS Kitchen",
-        "qty": 40,
-        "reorderPoint": 15
-      },
-      {
-        "itemCode": "B1003",
-        "itemName": "Turkey Burger",
-        "price": 1600,
-        "discount": 0,
-        "category": "Burger",
-        "supplier": "Lanka Meats",
-        "qty": 12,
-        "reorderPoint": 5
-      }
-    ];
-    console.log(JSON.parse(localStorage.getItem("invdb")) === null);
 
-    if (JSON.parse(localStorage.getItem("invdb")) === null) {
-      localStorage.setItem("invdb", JSON.stringify(inventoryData));
+    const sidebar = document.getElementById('sidebar');
+    const op = document.getElementById('open');
+    const cls = document.getElementById('cls');
 
-    }
-    console.log(JSON.parse(localStorage.getItem("invdb")) === null);
-
-
-    let tbody = document.getElementById("tableBody");
-    let dataSet = JSON.parse(localStorage.getItem("invdb"));
-
-    // clear tbody first
-    tbody.innerHTML = "";
-
-    // render rows
-    for (let index = 0; index < dataSet.length; index++) {
-      let row = `
-        <tr>
-          <td><span class="text-center">${dataSet[index].itemCode}</span></td>
-          <td>${dataSet[index].itemName}</td>
-          <td>${dataSet[index].category}</td>
-          <td>${dataSet[index].supplier}</td>
-          <td class="text-end">${dataSet[index].qty}</td>
-          <td class="text-end">${dataSet[index].reorderPoint}</td>
-          <td class="text-end">${(dataSet[index].discount * 100).toFixed(0)}%</td>
-          <td class="text-end">${dataSet[index].price}</td>
-          <td class="text-end">${(dataSet[index].price * dataSet[index].qty).toLocaleString()}</td>
-          <td class="text-center">
-            <span class="badge ${dataSet[index].qty > dataSet[index].reorderPoint ? "text-bg-success" : "text-bg-danger"}">
-              ${dataSet[index].qty > dataSet[index].reorderPoint ? "In Stock" : "Low Stock"}
-            </span>
-          </td>
-          <td class="text-center">
-            <div class="btn-group">
-              <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-gear fa-lg"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a href="#" class="dropdown-item  btn-update" prKey="${dataSet[index].itemCode}"><i class="bi bi-arrow-repeat"></i> Update</a></li>
-                <li><a href="#" class="dropdown-item  btn-delete" prKey="${dataSet[index].itemCode}"><i class="bi bi-ban"></i> Delete</a></li>
-
-                
-              </ul>
-            </div>
-          </td>
-        </tr>`;
-      tbody.innerHTML += row;
+    function billSlideBar() {
+      sidebar.classList.toggle("show");
     }
 
-    // attach events using normal for loop
-    let updateBtns = document.getElementsByClassName("btn-update");
-    let deleteBtns = document.getElementsByClassName("btn-delete");
+    op.addEventListener("click", billSlideBar);
+    cls.addEventListener("click", billSlideBar);
 
-    for (let i = 0; i < updateBtns.length; i++) {
-      updateBtns[i].addEventListener("click", function () {
-        let code = this.getAttribute("prKey");
-        console.log(code);
-
-      });
-    }
-    
-
-
-    for (let i = 0; i < deleteBtns.length; i++) {
-      deleteBtns[i].addEventListener("click", function () {
-        let code = this.getAttribute("prKey");
-        deleteItem(code);
-      });
-    }
-
-    function deleteItem(itemCode) {
-
-      const conferm = confirm("Do you want to delete this data row ?");
-
-      if (conferm === true) {
-        const confermText = prompt("Type 'Delete' word this box !");
-
-        if (confermText === "delete") {
-          let data = JSON.parse(localStorage.getItem("invdb")) || [];
-          data = data.filter(item => item.itemCode !== itemCode); // remove matching row
-          localStorage.setItem("invdb", JSON.stringify(data));
-          // renderTable(data); // refresh without reload
-          location.reload();
-
-        } else {
-          alert("Data deleting processing is canceled")
-        }
-
-      } else {
-        alert("Data deleting processing is canceled")
-      }
-
-    }
 
   </script>
 </body>
