@@ -747,18 +747,26 @@
 
     <!-- Custom JS -->
     <script>
-        if (JSON.parse(localStorage.getItem("inventory")) == null) {
-            fetch("Inventory Database.json")
-                .then(res => res.json())
-                .then(data => {
-                    localStorage.setItem("inventory", JSON.stringify(data));
-                    console.log("Inventory data loaded into LocalStorage --->");
-                });
+        function dbLoder(dbName, dbSourceFileName) {
 
-            setTimeout(() => {
-                location.reload();
-            }, 2000)
+            if (JSON.parse(localStorage.getItem(dbName)) == null) {
+                fetch(dbSourceFileName)
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem(dbName, JSON.stringify(data));
+                        console.log(dbName + " data loaded into LocalStorage --->");
+                    });
+
+                setTimeout(() => {
+                    location.reload();
+                }, 2000)
+            }
+
         }
+
+        dbLoder("inventoryDB", "Inventory Database.json");
+        dbLoder("CustomerData", "CustomerDB.json");
+
         document.getElementById("cleardb").addEventListener('click', () => {
             localStorage.clear();
         })
@@ -766,7 +774,7 @@
 
     <script src="inventory.js"></script>
     <script src="bill.js"></script>
-    <!-- <script src="customer.js"></script> -->
+    <script src="customer.js"></script>
 </body>
 
 </html>

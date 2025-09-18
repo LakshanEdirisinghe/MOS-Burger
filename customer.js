@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // =====================================================
     let dbConnectionCustomer = false;
 
-    if (localStorage.getItem("customers") != null) {
-        console.log("Customer db is connected");
+    if (localStorage.getItem("CustomerData") != null) {
+        console.log("✅ Customer db is connected");
         dbConnectionCustomer = true;
     } else {
-        console.log("Customer db Connection Error");
+        console.log("⚡Customer db Connection Error");
     }
 
     // Layout elements
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchBoxMob = document.getElementById("customerSearchBox-m");
 
     // Dataset
-    let customerDataSet = JSON.parse(localStorage.getItem("customers")) || [];
+    let customerDataSet = JSON.parse(localStorage.getItem("CustomerData")) || [];
 
     // Forms
     const form = document.getElementById("customerForm");
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function addData(e) {
         e.preventDefault();
 
-        let DataSet = JSON.parse(localStorage.getItem("customers")) || [];
+        let DataSet = JSON.parse(localStorage.getItem("CustomerData")) || [];
 
         // Collect form values
         const newCode = document.getElementById("customerCode").value.trim();
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (confirm("Are you Sure?")) {
             DataSet.push(newCustomer);
-            localStorage.setItem("customers", JSON.stringify(DataSet));
+            localStorage.setItem("CustomerData", JSON.stringify(DataSet));
             location.reload();
         }
     }
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function radyToUpdateItem(customerCode) {
         let isOk = confirm("Do you want to update this data row ?");
         if (isOk) {
-            let data = JSON.parse(localStorage.getItem("customers")) || [];
+            let data = JSON.parse(localStorage.getItem("CustomerData")) || [];
             const cust = data.find(c => c.customerCode === customerCode);
             const index = data.findIndex(c => c.customerCode === customerCode);
 
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         data[index].customerPhone = document.getElementById("customerPhone").value.trim();
                         data[index].customerAddress = document.getElementById("customerAddress").value.trim();
 
-                        localStorage.setItem("customers", JSON.stringify(data));
+                        localStorage.setItem("CustomerData", JSON.stringify(data));
                         location.reload();
                     } else {
                         alert("Updating process is canceled");
@@ -179,9 +179,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const confermText = prompt("Type 'Delete' word in this box !");
         if (confermText?.toLowerCase() === "delete") {
-            let data = JSON.parse(localStorage.getItem("customers")) || [];
+            let data = JSON.parse(localStorage.getItem("CustomerData")) || [];
             data = data.filter(c => c.customerCode !== customerCode);
-            localStorage.setItem("customers", JSON.stringify(data));
+            localStorage.setItem("CustomerData", JSON.stringify(data));
             location.reload();
         } else {
             alert("Data deleting process is canceled");
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Menu navigation
-    let lastPage = "customers"; // default
+    let lastPage = "bill"; // default
     pages.forEach(page => {
         page.style.display = (page.id === lastPage) ? "block" : "none";
     });
