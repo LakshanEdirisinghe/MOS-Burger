@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // =====================================================
     let dbConnectonInventory = false;
 
-    if (localStorage.getItem("inventory") != null) {
+    if (localStorage.getItem("inventoryDB") != null) {
         console.log("✅ Inventory db is connected");
         dbConnectonInventory = true;
     } else {
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchBoxMob = document.getElementById("searchBox-m");
 
     // Dataset
-    let inventoryDataSet = JSON.parse(localStorage.getItem("inventory")) || [];
+    let inventoryDataSet = JSON.parse(localStorage.getItem("inventoryDB")) || [];
 
     // Forms
     const form = document.getElementById("inventoryForm");
@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function addData(e) {
         e.preventDefault();
 
-        let DataSet = JSON.parse(localStorage.getItem("inventory")) || [];
+        let DataSet = JSON.parse(localStorage.getItem("inventoryDB")) || [];
 
         // Collect form values
         const newitemCode = document.getElementById("itemCode").value.trim();
@@ -550,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         if (confirm("Are you Sure?")) {
             DataSet.push(newItem);
-            localStorage.setItem("inventory", JSON.stringify(DataSet));
+            localStorage.setItem("inventoryDB", JSON.stringify(DataSet));
             location.reload();
         }
     }
@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return
         };
 
-        let data = JSON.parse(localStorage.getItem("inventory")) || [];
+        let data = JSON.parse(localStorage.getItem("inventoryDB")) || [];
         const item = data.find(item => item.itemCode === itemCode);
         const index = data.findIndex(item => item.itemCode === itemCode);
 
@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     data[index].price = parseFloat(document.getElementById("price").value) || 0;
                     data[index].discount = (parseFloat(document.getElementById("discount").value) || 0) / 100;
 
-                    localStorage.setItem("inventory", JSON.stringify(data));
+                    localStorage.setItem("inventoryDB", JSON.stringify(data));
                     // alert("Item updated successfully ✅");
                     location.reload();
                 } else {
@@ -610,9 +610,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const confermText = prompt("Type 'Delete' word in this box !");
         if (confermText?.toLowerCase() === "delete") {
-            let data = JSON.parse(localStorage.getItem("inventory")) || [];
+            let data = JSON.parse(localStorage.getItem("inventoryDB")) || [];
             data = data.filter(item => item.itemCode !== itemCode);
-            localStorage.setItem("inventory", JSON.stringify(data));
+            localStorage.setItem("inventoryDB", JSON.stringify(data));
             location.reload();
         } else {
             alert("Data deleting process is canceled");

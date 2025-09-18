@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${cust.customerName}</td>
                 <td>${cust.customerEmail}</td>
                 <td>${cust.customerPhone}</td>
-                <td>${cust.customerAddress}</td>
+                <td class="text-end">${cust.orderCount}</td>
                 <td class="text-center">
                     <div class="btn-group dropstart">
                         <button class="btn btn-sm border-0 dropdown-toggle" 
