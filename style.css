@@ -143,6 +143,7 @@ body {
     position: fixed;
     top: 0;
     right: calc(-1 * var(--bill-sidebar-width));
+    /* right: calc(var(--bill-sidebar-width)); */
     /*hidden by default */
     background: var(--more-light-team-brown);
     /* color: var(--sidebar-color); */
@@ -155,6 +156,7 @@ body {
 #sidebarBilling.show {
     right: 0;
 }
+
 
 
 /* Main content */
@@ -278,4 +280,4 @@ body {
     font-weight: 600;
     padding: 15px 20px;
     border-radius: 10px 10px 0 0 !important;
-} */
+} 
