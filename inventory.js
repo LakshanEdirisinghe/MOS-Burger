@@ -667,7 +667,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Menu navigation
-    let lastPage = "inventory"; // default
+    let lastPage = "bill"; // default
     pages.forEach(page => {
         page.style.display = (page.id === lastPage) ? "block" : "none";
     });

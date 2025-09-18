@@ -1,5 +1,6 @@
 :root {
     --sidebar-width: 288px;
+    --bill-sidebar-width: 488px;
     --sidebar-collapsed-width: 80px;
     --sidebar-bg: #1B1713;
     --sidebar-color: #ecf0f1;
@@ -9,6 +10,7 @@
     --transition-speed: 0.3s;
     --light-team-brown: #DDAA82;
     --dark-team-brown: #A64931;
+    --more-light-team-brown: #F4E5E5;
 }
 
 .alert-container {
@@ -134,6 +136,26 @@ body {
     left: calc(-1 * var(--sidebar-width));
 }
 
+/* Sidebar-bill (right side) */
+#sidebarBilling {
+    width: var(--bill-sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: calc(-1 * var(--bill-sidebar-width));
+    /*hidden by default */
+    background: var(--more-light-team-brown);
+    /* color: var(--sidebar-color); */
+    transition: all var(--transition-speed) ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Slide in when .show is added */
+#sidebarBilling.show {
+    right: 0;
+}
+
 
 /* Main content */
 #main-content {
@@ -215,6 +237,11 @@ body {
 
     .sidebar-item {
         font-size: 1rem;
+    }
+
+    :root {
+        --bill-sidebar-width: 100vw;
+        /* take entire screen width */
     }
 
 }

@@ -19,7 +19,7 @@
   <h1 id="open"><i class="bi bi-cart"></i></h1>
 
 
-  <div id="sidebar" class="card ">
+  <div id="sidebarBilling" class="card ">
 
     <div class="card-header">
 
@@ -135,12 +135,12 @@
 
   <script>
 
-    const sidebar = document.getElementById('sidebar');
+    const sidebarBilling = document.getElementById('sidebarBilling');
     const op = document.getElementById('open');
     const cls = document.getElementById('cls');
 
     function billSlideBar() {
-      sidebar.classList.toggle("show");
+      sidebarBilling.classList.toggle("show");
     }
 
     op.addEventListener("click", billSlideBar);
