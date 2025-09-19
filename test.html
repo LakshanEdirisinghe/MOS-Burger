@@ -1,296 +1,95 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Test</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="/testStyle.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Card Example</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
-<body class="m-4">
-
-
-
-  <h1 id="open"><i class="bi bi-cart"></i></h1>
-
-
-  <div id="sidebarBilling" class="card ">
-
-    <div class="card-header">
-
-      <div class=" d-flex ">
-
-        <div class="">
-          <button type="button" id="cls" class="btn   border-0"><i
-              class="fa-solid fa-arrow-up-from-bracket fa-rotate-90 fa-xl"></i>
-          </button>
-        </div>
-        <div>
-          <h2 class="ms-4 ">Customer Information</h2>
-        </div>
-
-      </div>
-      <div class="text-end mt-3 mb-3">
-        <button type="button" class="btn  btn-danger">Cancel Order</button>
-      </div>
-
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-        <label for="floatingInput">Name</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control " id="floatingPassword" placeholder="Password" required>
-        <label for="floatingPassword">Phone Number</label>
-      </div>
-      <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-          style="height: 100px"></textarea>
-        <label for="floatingTextarea2">Notes</label>
-      </div>
-
-    </div>
-    <div class="card-body">
-      <div>
-        <h2 class="card-title">Order Details</h2>
-
-        <!-- <div class="d-inline"><h6 class=" bg-black">Order Id</h6></div>
-        <div class="d-inline"><h6 class="bg-danger">#123456</h6></div> -->
-        <div class="d-flex gap-2 mt-4 justify-content-between">
-          <h6>Order Id</h6>
-          <h6>#123456</h6>
-        </div>
-        <div class="d-flex gap-2 mt-2 justify-content-between">
-          <h6>Order Date</h6>
-          <h6>Wednesday, July 30, 2025</h6>
-        </div>
-        <hr>
-      </div>
-
-      <!-- order card section -->
-      <div class="">
-        <p>What is Lorem Ipsum?
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum.</p>
-
-        <p>Why do we use it?
-          It is a long established fact that a reader will be distracted by the readable content of a page when looking
-          at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-          opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
-          packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-          will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).</p>
-
-
-        <p>Where does it come from?
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-          literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
-          College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-          and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem
-          Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-          Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the
-          Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
-          1.10.32.</p>
-      </div>
-
-    </div>
-    <div class="card-footer  bg-light sticky-bottom">
-      <div class="d-flex gap-2 mt-4 justify-content-between">
-        <h6>Total Items</h6>
-        <h6>10</h6>
-      </div>
-      <div class="d-flex gap-2 mt-2 justify-content-between">
-        <h6>Subtotal</h6>
-        <h6>7548.75 LKR</h6>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Discount</label>
-      </div>
-      <div class="d-flex gap-2 mt-2 text-black fw-bold justify-content-between">
-        <h4>Total Price</h6>
-          <h4>7540.75 LKR</h6>
-      </div>
-
-      <div class="mt-3 d-flex gap-2 justify-content-between">
-        <button type="button"
-          style="width: 331px; height: 60px; font-size: 30px; background-color: var(--dark-team-brown);"
-          class="btn border-0 mt-3 btn-success">Place Order</button>
-        <button type="button" style="width: 82px; height: 82px; background-color: var(--dark-team-brown);"
-          class="btn border-0 btn-success"><i class="fa-solid fa-print fa-2xl"></i></button>
-
-
-      </div>
-
-
-    </div>
-
-
-  </div>
-
-  <div class="card mb-2 shadow-sm" style="max-width: 100%; border-radius: 10px;">
-    <div class="row g-0 align-items-center">
-
-      <!-- Left image -->
-      <div class="col-3">
-        <img src="img/sample.jpg" class="img-fluid rounded-start" alt="Product"
-          style="height: 100%; object-fit: cover; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
-      </div>
-
-      <!-- Middle content -->
-      <div class="col-7">
-        <div class="card-body py-2">
-          <h6 class="card-title mb-1 fw-bold">Chicken & Cheeps <br>Toast</h6>
-
-          <!-- Quantity control -->
-          <div class="d-flex align-items-center mb-1">
-            <button class="btn btn-sm btn-outline-dark px-2">−</button>
-            <span class="mx-2 fw-bold">2</span>
-            <button class="btn btn-sm btn-outline-dark px-2">+</button>
-          </div>
-
-          <!-- Price -->
-          <p class="card-text fw-bold mb-0">RS. 3700.00</p>
-        </div>
-      </div>
-
-      <!-- Right delete button -->
-      <div class="col-2 text-center">
-        <button class="btn btn-link text-dark fs-4">
-          <i class="bi bi-trash-fill"></i>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="">
-
-    <div class="card mb-2 overflow-scroll">
-      <div class="row " style="max-height: 100px; max-width: 462px;">
-
-        <div class="card col-3 p-2 mt-1  border-0">
-
-          <img class="img-fluid rounded-2" src="/img/b4facf495c22df52f3ca635379ebe613 (1).jpeg" alt="item-img">
-
-        </div>
-
-
-        <!-- Middle content -->
-        <div class="col-md-7 bg-success">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, ullam ad veritatis deleniti ipsum vel in,
-          consectetur provident iure reprehenderit maxime minima aliquid sint hic officia delectus! Ratione, cum
-          molestias!
-          <!-- <div class="card-body"> -->
-          <!-- <h6 class="card-title mt-1 fw-bold">Double Cheese n Chicken Submarine </h6> -->
-
-          <!-- Quantity control -->
-          <!-- <div class="d-inline-flex me-0 gap-lg-4 gap-1 align-items-center mb-1">
-                                <div>
-                                    <button class="btn btn-sm btn-dark px-2">−</button>
-                                    <span class="mx-2 fw-bold">2</span>
-                                    <button class="btn btn-sm btn-dark ">+</button>
-                                </div>
-                                <div>
-                                    <p class="card-text fs-5 fw-bold ">RS. 3700.00</p>
-                                </div>
-
-                            </div> -->
-
-          <!-- Price -->
-          <!-- <p class="card-text fw-bold mb-0">RS. 3700.00</p> -->
-          <!-- </div> -->
-        </div>
-
-        <!-- Right delete button -->
-        <div class="col-md-2 bg-info text-center">
-          <!-- <button class="btn btn-link text-dark fs-4">
-                                <i class="bi bi-trash-fill"></i>
-                            </button> -->
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo doloremque, molestias aliquam provident
-          vitae eos non recusandae, laudantium mollitia repellat optio iste autem reiciendis assumenda! Fugit illo
-          nesciunt hic perferendis.
-        </div>
-
-
-        <!-- </div> -->
-
-
-      </div>
-
-
-    </div>
-
-    <p>What is Lorem Ipsum?
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-      industry's
-      standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-      scrambled it to
-      make a type specimen book. It has survived not only five centuries, but also the leap into
-      electronic
-      typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-      Letraset
-      sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-      Aldus
-      PageMaker including versions of Lorem Ipsum.</p>
-
-    <p>Why do we use it?
-      It is a long established fact that a reader will be distracted by the readable content of a page
-      when looking
-      at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
-      letters, as
-      opposed to using 'Content here, content here', making it look like readable English. Many desktop
-      publishing
-      packages and web page editors now use Lorem Ipsum as their default model text, and a search for
-      'lorem ipsum'
-      will uncover many web sites still in their infancy. Various versions have evolved over the years,
-      sometimes by
-      accident, sometimes on purpose (injected humour and the like).</p>
-
-
-    <p>Where does it come from?
-      Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-      classical Latin
-      literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-      Hampden-Sydney
-      College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
-      passage,
-      and going through the cites of the word in classical literature, discovered the undoubtable source.
-      Lorem
-      Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of
-      Good and
-      Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular
-      during the
-      Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
-      section
-      1.10.32.</p>
-  </div>
-
-
-  <script>
-
-    const sidebarBilling = document.getElementById('sidebarBilling');
-    const op = document.getElementById('open');
-    const cls = document.getElementById('cls');
-
-    function billSlideBar() {
-      sidebarBilling.classList.toggle("show");
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <style>
+    :root {
+      --dark-team-brown: #A64931;
+      --light-team-brown: #DDAA82;
     }
 
-    op.addEventListener("click", billSlideBar);
-    cls.addEventListener("click", billSlideBar);
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f6fa;
+    }
 
 
-  </script>
+
+
+    .custom-card {
+      width: 199px;
+      height: 165px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .custom-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .custom-card .card-body {
+      padding: 0.5rem;
+    }
+
+    .custom-card .card-title {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .custom-card .card-text {
+      font-size: 0.875rem;
+      color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .custom-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="d-flex flex-wrap gap-4 justify-content-between">
+
+  <div class="card custom-card mt-3 mb-3" style="flex: 1 1 18rem; max-width: 18rem;">
+    <img src="/img/b4facf495c22df52f3ca635379ebe613 (1).jpeg" class="card-img-top img-fluid" alt="Item Image">
+    <div class="card-body">
+      <h5 class="card-title">Classic Burger</h5>
+      <p class="card-text">A delicious burger with fresh ingredients.</p>
+    </div>
+  </div>
+
+  <div class="card custom-card mt-3 mb-3" style="flex: 1 1 18rem; max-width: 18rem;">
+    <img src="/img/b4facf495c22df52f3ca635379ebe613 (1).jpeg" class="card-img-top img-fluid" alt="Item Image">
+    <div class="card-body">
+      <h5 class="card-title">Classic Burger</h5>
+      <p class="card-text">A delicious burger with fresh ingredients.</p>
+    </div>
+  </div>
+
+  <!-- repeat other cards the same way -->
+</div>
+
+
 </body>
 
 </html>
