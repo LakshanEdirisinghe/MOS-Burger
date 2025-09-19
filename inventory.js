@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td><span class="text-center">${item.itemCode}</span></td>
                 <td>${item.itemName}</td>
                 <td>${item.category}</td>
-                <td>${item.supplier}</td>
+                <td style="min-width: 250px;">${item.supplier}</td>
                 <td class="text-end">${item.qty}</td>
                 <td class="text-end">${item.reorderPoint}</td>
                 <td class="text-end">${(item.discount * 100).toFixed(0)}%</td>

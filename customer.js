@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             row.innerHTML = `
                 <td>${cust.customerCode}</td>
-                <td>${cust.customerName}</td>
+                <td style="min-width: 200px;">${cust.customerName}</td>
                 <td>${cust.customerEmail}</td>
-                <td>${cust.customerPhone}</td>
+                <td style="min-width: 150px;">${cust.customerPhone}</td>
                 <td class="text-end">${cust.orderCount}</td>
                 <td class="text-center">
                     <div class="btn-group dropstart">
