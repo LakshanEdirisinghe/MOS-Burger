@@ -25,7 +25,7 @@ document.addEventListener('click', function (event) {
 });
 
 // Menu navigation
-let lastPage = "customers"; // default
+let lastPage = "bill"; // default
 pages.forEach(page => {
     page.style.display = (page.id === lastPage) ? "block" : "none";
 });
