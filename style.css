@@ -21,6 +21,36 @@
     --more-light-team-brown: #F4E5E5;
 }
 
+.menu-nav .nav-link {
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 8px;
+  color: black; /* default text color */
+}
+
+/* underline effect */
+.menu-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 0;
+  background-color: black;
+  transition: width 0.3s ease; /* smooth animation */
+}
+
+/* hover effect */
+.menu-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* active (current) effect */
+.menu-nav .nav-link.active::after {
+  width: 100%;
+}
+
+
 .alert-container {
     position: fixed;
     top: 20px;

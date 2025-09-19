@@ -9,3 +9,4 @@ function billSlideBar() {
 op.addEventListener("click", billSlideBar);
 cls.addEventListener("click", billSlideBar);
 document.getElementById("open-lg").addEventListener("click", billSlideBar);
+
