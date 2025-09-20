@@ -21,6 +21,35 @@
     --more-light-team-brown: #F4E5E5;
 }
 
+.carousel-img {
+  height: 40rem;          /* fixed height for consistency */
+  object-fit: cover;      /* crop edges, keeps proportions */
+ /* object-position: bottom;   /* centers the focus */
+ object-position: 50% 91%; 
+}
+.carousel-img-1{
+    object-position: 50% 91%; 
+
+}
+.carousel-img-2{
+    object-position: 50% 149%; 
+
+}
+.carousel-img-3{
+    object-position: 50% 121%; 
+
+}
+.carousel-img-4{
+    object-position: 50% 156%; 
+
+}
+.carousel-img-5{
+    object-position: 50% 42%; 
+
+}
+
+
+
 /* menu item card */
 .custom-card {
     width: 270px;

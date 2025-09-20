@@ -311,20 +311,32 @@
     <div id="main-content">
         <!-- <div class="page-content" id="page-content"> -->
         <div id="home" class="page m-3 ">
-            <div class="card">
-                <div class="card-header shadow">
-                    <h1>Remove Local Storage Data</h1>
-
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="max-height: 25rem;">
+                    <div class="carousel-item active">
+                        <img src="img/home-page-wallpapers/1.4AMTO9AM.jpg" class="d-block w-100 carousel-img carousel-img-1" alt="...">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="img/home-page-wallpapers/2.9AMTO3PM.jpg" class="d-block w-100 carousel-img carousel-img-2" alt="...">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="img/home-page-wallpapers/3.3PMTO4-30PM.jpg" class="d-block w-100 carousel-img carousel-img-3"
+                            alt="...">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="img/home-page-wallpapers/4.4-30PMTO6-30PM.jpg" class="d-block w-100 carousel-img carousel-img-4"
+                            alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/home-page-wallpapers/5.6-30PMTO4AM.jpg" class="d-block w-100 carousel-img carousel-img-5"
+                            alt="...">
+                    </div> 
                 </div>
-
-                <div class="card-body">
-                    <button type="button" id="cleardb" class="btn btn-danger btn-lg">Clear Data</button>
-
-                </div>
-
             </div>
+
+
         </div>
-        <!-- </div> -->
+
 
         <div id="bill" class="page m-3" style="display: none;">
 
@@ -502,8 +514,8 @@
                                         <!-- <p class=" fw-bold mt-2 card-text blockquote-footer">B1047</p> -->
                                         <figcaption class="blockquote-footer mt-2 mb-0">B1047 </figcaption>
                                         <div style="position:absolute;bottom: 260px ;left:10px ;">
-                                            <span class="badge text-bg-dark"><i
-                                                    class="fa-solid fa-circle-info fa-2xl"></i></span>
+                                            <span class="badge  text-bg-dark"><i
+                                                    class="fa-solid  fa-circle-info fa-2xl"></i></span>
                                         </div>
                                         <div class="" style="position: absolute;left: 201px;bottom: 15px; ">
                                             <i class=" fa-solid fa-circle-plus fa-3x"></i>
@@ -532,8 +544,8 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="card custom-card h-100">
-                                    <img src="img/menu-items/a19bb09692310dfd41e49a96c424b3a6 (1).jpeg" class="img-fluid card-img-top"
-                                        alt="Item Image">
+                                    <img src="img/menu-items/a19bb09692310dfd41e49a96c424b3a6 (1).jpeg"
+                                        class="img-fluid card-img-top" alt="Item Image">
                                     <div class="card-body">
                                         <h5 class="card-title fw-bold">Classic Burger</h5>
                                         <p class=" fw-bold mt-2 card-text">RS 350.00</p>
@@ -551,8 +563,8 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="card custom-card h-100">
-                                    <img src="img/b4facf495c22df52f3ca635379ebe613 (1).jpeg" class="img-fluid card-img-top"
-                                        alt="Item Image">
+                                    <img src="img/b4facf495c22df52f3ca635379ebe613 (1).jpeg"
+                                        class="img-fluid card-img-top" alt="Item Image">
                                     <div class="card-body">
                                         <h5 class="card-title fw-bold">Classic Burger</h5>
                                         <p class=" fw-bold mt-2 card-text">RS 350.00</p>
@@ -1050,8 +1062,19 @@
 
         </div>
 
-        <div id="reports" class="page" style="display: none;">
-            <h1>Reports</h1>
+        <div id="reports" class="page m-2" style="display: none;">
+            <div class="card">
+                <div class="card-header shadow">
+                    <h1>Remove Local Storage Data</h1>
+
+                </div>
+
+                <div class="card-body">
+                    <button type="button" id="cleardb" class="btn btn-danger btn-lg">Clear Data</button>
+
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -1083,7 +1106,14 @@
         dbLoder("CustomerData", "CustomerDB.json");
 
         document.getElementById("cleardb").addEventListener('click', () => {
-            localStorage.clear();
+            let isOk = confirm("Do you want to clear all data of local storage ?");
+
+            if (isOk) {
+                localStorage.clear();
+
+                alert("All data was removed !")
+
+            }
         })
     </script>
 
